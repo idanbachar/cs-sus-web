@@ -1,15 +1,30 @@
 .App {
   text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  height: 100vh;
+}
+
+.SearchArea {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: #161821;
+  height: 30vh;
+}
+
+.SearchedUserArea {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  overflow-y: auto;
+  padding-top: 12rem;
+  max-height: 70vh;
 }

@@ -1,5 +1,6 @@
 import { IUser } from "../../interfaces/IUser";
 import Card from "../Card/Card";
+import SteamGames from "../SteamGames/SteamGames";
 import SteamUserAvatar from "./SteamUserAvatar/SteamUserAvatar";
 import styles from "./steam-user.module.css";
 
@@ -20,8 +21,6 @@ const SteamUser: React.FC<IUser> = (props) => {
     games,
     inventory,
   } = props;
-  console.log(props);
-
   return (
     <div className={styles.container}>
       <Card>
@@ -38,6 +37,9 @@ const SteamUser: React.FC<IUser> = (props) => {
           </div>
         )}
       </Card>
+      <div style={{ overflow: "auto" }}>
+        {games && <SteamGames games={games} />}
+      </div>
     </div>
   );
 };

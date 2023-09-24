@@ -44,6 +44,10 @@ export interface ISteamGame {
   playtime_disconnected: number;
 }
 
+export interface ISteamGames {
+  games: ISteamGame[];
+}
+
 export interface ISteamUserStatsForGame {
   steamID: string;
   gameName: string;

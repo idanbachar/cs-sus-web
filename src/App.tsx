@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <section className="SearchArea">
         <h1>Who is SUS?</h1>
         <SearchUser
           placeholder={"Enter suspicious steam url"}
@@ -17,8 +17,10 @@ const App = () => {
             setSteamUser(userData);
           }}
         />
+      </section>
+      <section className={"SearchedUserArea"}>
         {steamUser && <SteamUser {...steamUser} />}
-      </header>
+      </section>
     </div>
   );
 };
