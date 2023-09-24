@@ -1,0 +1,18 @@
+.avatarContainer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.personaname {
+  bottom: 0;
+  background-color: black;
+  font-size: 1.5rem;
+}
+
+.avatar {
+  border-radius: 0.5rem;
+  border: 5px solid rgb(0, 196, 13);
+  box-sizing: border-box;
+  width: 10rem;
+}

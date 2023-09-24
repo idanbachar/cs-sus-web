@@ -1,31 +1,29 @@
 import { useState } from "react";
 import styles from "./search-user.module.css";
-import axios from "axios";
 import { BsSearch } from "react-icons/bs";
+import { ISearchUser } from "../../interfaces/ISearchUser";
+import { GetUser } from "../../services/steamService";
 
-const SearchUser: React.FC = () => {
-  const [input, setInput] = useState("");
+const SearchUser: React.FC<ISearchUser> = (props) => {
+  const { placeholder, onSearch } = props;
+
+  const [inputValue, setInputValue] = useState("");
   return (
     <div className={styles.container}>
       <div className={styles.inputContainer}>
         <BsSearch color="black" />
         <input
-          className={styles.input}
-          placeholder={"Enter suspicious steam url"}
           type={"search"}
-          onChange={(e) => setInput(e.target.value)}
+          className={styles.input}
+          placeholder={placeholder}
+          onChange={(e) => setInputValue(e.target.value)}
         />
       </div>
       <button
         className={styles.button}
-        onClick={() => {
-          (async () => {
-            const data = await axios(
-              `http://localhost:4000/getUser?steamUrl=${input}`
-            );
-
-            console.log("data", data.data);
-          })();
+        onClick={async () => {
+          const userData = await GetUser(inputValue);
+          onSearch(userData);
         }}
       >
         Search!
