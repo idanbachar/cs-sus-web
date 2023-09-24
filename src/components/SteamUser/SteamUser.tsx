@@ -1,5 +1,6 @@
 import { IUser } from "../../interfaces/IUser";
 import Card from "../Card/Card";
+import SteamFriends from "../SteamFriends/SteamFriends";
 import SteamGames from "../SteamGames/SteamGames";
 import SteamUserAvatar from "./SteamUserAvatar/SteamUserAvatar";
 import styles from "./steam-user.module.css";
@@ -23,23 +24,28 @@ const SteamUser: React.FC<IUser> = (props) => {
   } = props;
   return (
     <div className={styles.container}>
-      <Card>
-        <SteamUserAvatar avatarfull={avatarfull} borderColor="green" />
-        <div className={styles.name}>
-          <span>
-            {personaname} {`${realname ? `| ${realname}` : ""}`}
-          </span>
-        </div>
-        {loccountrycode && country_image && (
-          <div className={styles.country}>
-            <span>{loccountrycode}</span>
-            <img src={country_image} width={"48"} height={"36"} />
+      <div className={styles.socialContainer}>
+        <Card>
+          <SteamUserAvatar
+            avatars={{ avatar, avatarfull, avatarmedium }}
+            size={"avatarfull"}
+            borderColor="green"
+          />
+          <div className={styles.name}>
+            <span>
+              {personaname} {`${realname ? `| ${realname}` : ""}`}
+            </span>
           </div>
-        )}
-      </Card>
-      <div style={{ overflow: "auto" }}>
-        {games && <SteamGames games={games} />}
+          {loccountrycode && country_image && (
+            <div className={styles.country}>
+              <span>{loccountrycode}</span>
+              <img src={country_image} width={"48"} height={"36"} />
+            </div>
+          )}
+        </Card>
       </div>
+
+      <div>{games && <SteamGames games={games} />}</div>
     </div>
   );
 };

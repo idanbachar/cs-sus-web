@@ -20,6 +20,10 @@ export interface ISteamFriend {
   friend_since: number | Date;
 }
 
+export interface ISteamFriends {
+  friends: ISteamPlayer[];
+}
+
 export interface ISteamPlayerBans {
   SteamId: string;
   CommunityBanned: boolean;

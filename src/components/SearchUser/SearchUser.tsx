@@ -7,7 +7,9 @@ import { GetUser } from "../../services/steamService";
 const SearchUser: React.FC<ISearchUser> = (props) => {
   const { placeholder, onSearch } = props;
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(
+    "https://steamcommunity.com/id/greenturtleshell"
+  );
   return (
     <div className={styles.container}>
       <div className={styles.inputContainer}>

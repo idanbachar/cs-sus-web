@@ -24,7 +24,6 @@ const SteamGames: React.FC<ISteamGames> = (props) => {
         slidesPerView={4}
         onSlideChange={() => console.log("slide change")}
         breakpoints={{
-
           880: {
             slidesPerView: 2,
             spaceBetween: 20,

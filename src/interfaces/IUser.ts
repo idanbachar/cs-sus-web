@@ -1,6 +1,7 @@
 import {
   ISteamFriend,
   ISteamGame,
+  ISteamPlayer,
   ISteamPlayerBans,
   ISteamUserInventory,
 } from "./ISteamWorks";
@@ -16,14 +17,20 @@ export interface IUser {
   timecreated: Date;
   loccountrycode: string | null;
   country_image: string | null;
-  friends: ISteamFriend[] | null;
+  friends: ISteamPlayer[] | null;
   vacBans: ISteamPlayerBans | null;
   games: ISteamGame[] | null;
   inventory: any | null;
 }
 
 export interface ISteamUserAvatar {
-  avatarfull: string;
+  avatars: {
+    avatar: string;
+    avatarfull: string;
+    avatarmedium: string;
+  };
+  size: "avatar" | "avatarfull" | "avatarmedium";
   personaname?: string;
-  borderColor: "red" | "green";
+  borderColor?: "red" | "green";
+  cssStyles?: React.CSSProperties;
 }
