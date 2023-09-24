@@ -8,7 +8,7 @@ const SearchUser: React.FC<ISearchUser> = (props) => {
   const { placeholder, onSearch } = props;
 
   const [inputValue, setInputValue] = useState(
-    "https://steamcommunity.com/id/greenturtleshell"
+    "https://steamcommunity.com/id/Assassin1BK"
   );
   return (
     <div className={styles.container}>

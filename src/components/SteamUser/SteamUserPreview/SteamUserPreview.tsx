@@ -1,11 +1,9 @@
-import { IUser } from "../../interfaces/IUser";
-import Card from "../Card/Card";
-import SteamFriends from "../SteamFriends/SteamFriends";
-import SteamGames from "../SteamGames/SteamGames";
-import SteamUserAvatar from "./SteamUserAvatar/SteamUserAvatar";
-import styles from "./steam-user.module.css";
+import { IUser } from "../../../interfaces/IUser";
+import Card from "../../Card/Card";
+import SteamUserAvatar from "../SteamUserAvatar/SteamUserAvatar";
+import styles from "../steam-user.module.css";
 
-const SteamUser: React.FC<IUser> = (props) => {
+const SteamUserPreview: React.FC<IUser> = (props) => {
   const {
     steamid,
     personaname,
@@ -42,10 +40,8 @@ const SteamUser: React.FC<IUser> = (props) => {
           )}
         </Card>
       </div>
-
-      <div>{games && <SteamGames games={games} />}</div>
     </div>
   );
 };
 
-export default SteamUser;
+export default SteamUserPreview;

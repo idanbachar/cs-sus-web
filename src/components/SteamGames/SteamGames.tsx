@@ -34,9 +34,9 @@ const SteamGames: React.FC<ISteamGames> = (props) => {
           },
         }}
       >
-        {games.map((game) => (
-          <SwiperSlide>
-            <Card backgroundColor={"#161821"}>
+        {games.map((game, index) => (
+          <SwiperSlide key={index}>
+            <Card backgroundColor={"#0a0b0f"}>
               <SteamGame {...game} />
             </Card>
           </SwiperSlide>

@@ -7,8 +7,8 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
 
   return (
     <div className={styles.friends}>
-      {friends.map((friend) => (
-        <SteamFriend {...friend} />
+      {friends.map((friend, index) => (
+        <SteamFriend {...friend} key={index} />
       ))}
     </div>
   );

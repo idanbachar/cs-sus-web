@@ -11,7 +11,7 @@ const Card: React.FC<{
       className={styles.cardContainer}
       style={{ backgroundColor: props.backgroundColor }}
     >
-      {props.children}
+      {children}
     </div>
   );
 };

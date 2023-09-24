@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  font-size: calc(10px + 2vmin);
 }
 
 .SearchArea {
@@ -11,9 +12,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
-  background-color: #161821;
   width: 100%;
 }
 
@@ -22,23 +21,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
   width: 50%;
   max-height: 70vh;
+  padding-top: 5rem;
 }
 
 .userContainer {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   overflow-y: auto;
-}
-
-.userFriendsArea {
-  overflow: auto;
-  position: absolute;
-  max-height: 100%;
-  left: 0;
-  z-index: 10;
 }

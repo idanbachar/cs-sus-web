@@ -29,11 +29,11 @@
 
 .button {
   font-size: 1.5rem;
-  background-color: #1488c5;
+  background-color: #162874;
   border: 0;
   outline: none;
   padding: 1rem;
   color: white;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   box-sizing: border-box;
 }
