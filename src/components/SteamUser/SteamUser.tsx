@@ -25,6 +25,8 @@ const SteamUser: React.FC<IUser> = (props) => {
     inventory,
     steamLevel,
   } = props;
+
+  const years_of_service = moment().diff(moment(timecreated), "years");
   return (
     <div className={styles.container}>
       <Card
@@ -40,26 +42,30 @@ const SteamUser: React.FC<IUser> = (props) => {
             <TitleDescription
               title={"Friends"}
               description={friends.length.toString()}
+              isSus={friends.length < 8}
             />
           )}
           {vacBans && (
             <TitleDescription
-              title={"Vac Bans"}
-              description={vacBans.NumberOfVACBans.toString()}
+              title={"Bans"}
+              description={(
+                vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
+              ).toString()}
+              isSus={vacBans.VACBanned}
             />
           )}
           {steamLevel && (
             <TitleDescription
               title={"Level"}
               description={steamLevel.toString()}
+              isSus={steamLevel < 5}
             />
           )}
           {timecreated && (
             <TitleDescription
               title={"Years"}
-              description={moment()
-                .diff(moment(timecreated), "years")
-                .toString()}
+              description={years_of_service.toString()}
+              isSus={years_of_service <= 3}
             />
           )}
         </div>

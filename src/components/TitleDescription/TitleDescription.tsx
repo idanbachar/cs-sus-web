@@ -8,7 +8,10 @@ const TitleDescription: React.FC<ITitleDescription> = (props) => {
   const color = isSus !== undefined ? (isSus ? "darkred" : "green") : "";
 
   return (
-    <div className={styles.container} style={{ ...cssStyles }}>
+    <div
+      className={styles.container}
+      style={{ ...cssStyles, border: color && `2px solid ${color}` }}
+    >
       <span style={{ color: "#7281c5" }}>{title}</span>
       <div
         style={{
@@ -20,7 +23,6 @@ const TitleDescription: React.FC<ITitleDescription> = (props) => {
         <span
           style={{
             color,
-            border: color && `2px solid ${color}`,
             fontWeight: "bold",
           }}
         >

@@ -2,7 +2,7 @@ import { ISteamGame } from "../../../interfaces/ISteamWorks";
 import TitleDescription from "../../TitleDescription/TitleDescription";
 
 const SteamGame: React.FC<ISteamGame> = (props) => {
-  const { name, img_icon_url, playtime_forever } = props;
+  const { appid, img_icon_url, playtime_forever } = props;
 
   return (
     <div>
@@ -14,6 +14,7 @@ const SteamGame: React.FC<ISteamGame> = (props) => {
           background: "none",
           color: "#7281c5",
         }}
+        isSus={playtime_forever < 600 && appid === 730 ? true : undefined}
       />
     </div>
   );
