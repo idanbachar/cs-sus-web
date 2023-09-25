@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import { IUser } from "./interfaces/IUser";
 import SteamUser from "./components/SteamUser/SteamUser";
 import { useLocation, useSearchParams } from "react-router-dom";
-import queryString from "query-string";
 import { GetUser } from "./services/steamService";
+import { db } from "./firebase/config";
+import { collection, getDocs } from "firebase/firestore/lite";
 
 const App = () => {
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
@@ -13,6 +14,15 @@ const App = () => {
   const steamUrlParam = queryParameters.get("steamUrl");
 
   const location = useLocation();
+
+  (async () => {
+    const usersCollection = collection(db, "users");
+    const usersSnapshot = await getDocs(usersCollection);
+    const usersList = usersSnapshot.docs.map((doc) => doc.data());
+    console.log("usersList", usersList);
+
+    return usersList;
+  })();
 
   useEffect(() => {
     if (steamUrlParam) {
