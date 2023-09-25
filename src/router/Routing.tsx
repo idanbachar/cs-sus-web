@@ -5,6 +5,7 @@ const Routing: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<App />}></Route>
+      <Route path="/login-succeed" element={<App />}></Route>
     </Routes>
   );
 };

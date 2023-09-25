@@ -7,6 +7,8 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import { GetUser } from "./services/steamService";
 import { db } from "./firebase/config";
 import { collection, getDocs } from "firebase/firestore/lite";
+import Header from "./components/Header/Header";
+import axios from "axios";
 
 const App = () => {
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
@@ -33,8 +35,18 @@ const App = () => {
     }
   }, [location]);
 
+  // useEffect(() => {
+  //   (async () => {
+  //     const urlParams = window.location.search;
+  //     // const userData = JSON.parse(JSON.stringify(Object.fromEntries(urlParams.entries())));
+  //     console.log("urlParams", JSON.parse(decodeURI(urlParams)));
+  //     // console.log("userData", userData);
+  //   })();
+  // }, []);
+
   return (
     <div className="App">
+      <Header />
       <section className="SearchArea">
         <h1>
           CS:<span style={{ color: "darkred" }}>SUS</span>

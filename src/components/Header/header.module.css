@@ -1,0 +1,17 @@
+.signIn {
+  background-color: #000000;
+  border: 1px solid white;
+  height: 3rem;
+  min-width: 10rem;
+  color: white;
+  font-size: 1rem;
+  box-sizing: border-box;
+  padding: 1rem;
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+}
