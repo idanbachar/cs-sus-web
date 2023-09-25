@@ -5,3 +5,9 @@
   width: 20rem;
   background-color: #161821;
 }
+
+.container {
+  display: flex;
+  max-width: 100vw;
+  width: 100%;
+}

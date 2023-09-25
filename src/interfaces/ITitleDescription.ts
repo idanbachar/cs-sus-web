@@ -3,4 +3,5 @@ export interface ITitleDescription {
   description: string;
   isSus?: boolean;
   cssStyles?: React.CSSProperties;
+  isArrow?: boolean;
 }

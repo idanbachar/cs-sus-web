@@ -3,9 +3,9 @@ import { ITitleDescription } from "../../interfaces/ITitleDescription";
 import styles from "./title-decsription.module.css";
 
 const TitleDescription: React.FC<ITitleDescription> = (props) => {
-  const { title, description, cssStyles, isSus = false } = props;
+  const { title, description, cssStyles, isSus, isArrow = false } = props;
 
-  const color = isSus ? "red" : "green";
+  const color = isSus !== undefined ? (isSus ? "darkred" : "green") : "";
 
   return (
     <div className={styles.container} style={{ ...cssStyles }}>
@@ -25,7 +25,13 @@ const TitleDescription: React.FC<ITitleDescription> = (props) => {
         >
           {description}
         </span>
-        {isSus ? <BsArrowDown color={color} /> : <BsArrowUp color={color} />}
+        {isArrow && isSus !== undefined ? (
+          isSus ? (
+            <BsArrowDown color={color} />
+          ) : (
+            <BsArrowUp color={color} />
+          )
+        ) : null}
       </div>
     </div>
   );

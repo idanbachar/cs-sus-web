@@ -33,6 +33,6 @@ export interface ISteamUserAvatar {
   };
   size: "avatar" | "avatarfull" | "avatarmedium";
   personaname?: string;
-  borderColor?: "red" | "green";
+  borderColor?: "darkred" | "green";
   cssStyles?: React.CSSProperties;
 }

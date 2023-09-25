@@ -61,6 +61,13 @@ const SteamUser: React.FC<IUser> = (props) => {
           />
         )}
       </Card>
+      {games && (
+        <TitleDescription
+          title="Games"
+          description={games.length.toString()}
+          cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
+        />
+      )}
       <Card
         cssStyles={{
           width: "100%",
@@ -68,6 +75,21 @@ const SteamUser: React.FC<IUser> = (props) => {
         }}
       >
         {games && <SteamGames games={games} />}
+      </Card>
+      {friends && (
+        <TitleDescription
+          title="Friends"
+          description={friends.length.toString()}
+          cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
+        />
+      )}
+      <Card
+        cssStyles={{
+          width: "100%",
+          maxWidth: "70rem",
+        }}
+      >
+        {friends && <SteamFriends friends={friends} />}
       </Card>
     </div>
   );
