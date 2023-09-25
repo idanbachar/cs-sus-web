@@ -21,6 +21,8 @@ export interface IUser {
   vacBans: ISteamPlayerBans | null;
   games: ISteamGame[] | null;
   inventory: any | null;
+  totalBadges: number;
+  steamLevel: number;
 }
 
 export interface ISteamUserAvatar {

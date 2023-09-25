@@ -1,12 +1,20 @@
 import { ISteamGame } from "../../../interfaces/ISteamWorks";
+import TitleDescription from "../../TitleDescription/TitleDescription";
 
 const SteamGame: React.FC<ISteamGame> = (props) => {
-  const { img_icon_url, playtime_forever } = props;
+  const { name, img_icon_url, playtime_forever } = props;
 
   return (
     <div>
       <img src={img_icon_url} />
-      <h4>{playtime_forever} hrs</h4>
+      <TitleDescription
+        title={""}
+        description={`${playtime_forever} hrs`}
+        cssStyles={{
+          background: "none",
+          color: "#7281c5",
+        }}
+      />
     </div>
   );
 };

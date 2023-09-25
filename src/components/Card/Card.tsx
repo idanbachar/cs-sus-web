@@ -2,15 +2,12 @@ import styles from "./card.module.css";
 
 const Card: React.FC<{
   children: React.ReactNode;
-  backgroundColor?: string;
+  cssStyles?: React.CSSProperties;
 }> = (props) => {
-  const { children } = props;
+  const { children, cssStyles } = props;
 
   return (
-    <div
-      className={styles.cardContainer}
-      style={{ backgroundColor: props.backgroundColor }}
-    >
+    <div className={styles.cardContainer} style={cssStyles}>
       {children}
     </div>
   );

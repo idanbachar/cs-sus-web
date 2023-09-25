@@ -5,44 +5,43 @@ import styles from "./steam-games.module.css";
 import "swiper/css/bundle";
 import "swiper/swiper-bundle.css";
 import Card from "../Card/Card";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import SwiperCore from "swiper";
 
 const SteamGames: React.FC<ISteamGames> = (props) => {
   const { games } = props;
   SwiperCore.use([Navigation]);
   return (
-    <div className={styles.container}>
-      <Swiper
-        className="mySwiper"
-        modules={[Navigation, Scrollbar, A11y]}
-        initialSlide={0}
-        spaceBetween={10}
-        freeMode={true}
-        navigation={true}
-        enabled={true}
-        slidesPerView={4}
-        onSlideChange={() => console.log("slide change")}
-        breakpoints={{
-          880: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1220: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        }}
-      >
-        {games.map((game, index) => (
-          <SwiperSlide key={index}>
-            <Card backgroundColor={"#0a0b0f"}>
-              <SteamGame {...game} />
-            </Card>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+    <>
+      <div className={styles.container}>
+        <Swiper
+          className="mySwiper"
+          modules={[Navigation]}
+          initialSlide={0}
+          spaceBetween={20}
+          navigation={true}
+          breakpoints={{
+            675: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1400: {
+              slidesPerView: 3,
+            },
+          }}
+        >
+          {games.map((game, index) => (
+            <SwiperSlide key={index}>
+              <Card cssStyles={{ backgroundColor: "#0a0b0f" }}>
+                <SteamGame {...game} />
+              </Card>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </>
   );
 };
 

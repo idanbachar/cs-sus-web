@@ -12,6 +12,9 @@ export interface ISteamPlayer {
   timecreated: number | Date;
   personastateflags: number;
   loccountrycode: string;
+  country_image: string;
+  totalBadges: number;
+  steamLevel: number;
 }
 
 export interface ISteamFriend {
@@ -62,7 +65,6 @@ export interface ISteamUserStatsForGame {
     }
   ];
 }
-
 export interface ISteamUserInventory {
   total_inventory_count: number;
   descriptions: {

@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   font-size: calc(10px + 2vmin);
 }
 
@@ -11,9 +11,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   color: white;
   width: 100%;
+  display: flex;
 }
 
 .SearchedUserArea {
@@ -22,8 +23,6 @@
   align-items: center;
   justify-content: center;
   color: white;
-  width: 50%;
-  max-height: 70vh;
   padding-top: 5rem;
 }
 
@@ -32,4 +31,16 @@
   justify-content: space-between;
   width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 1470px) {
+  .userContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-direction: column-reverse;
+    align-items: center;
+    overflow-y: auto;
+  }
 }

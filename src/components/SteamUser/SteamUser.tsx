@@ -2,8 +2,10 @@ import { IUser } from "../../interfaces/IUser";
 import Card from "../Card/Card";
 import SteamFriends from "../SteamFriends/SteamFriends";
 import SteamGames from "../SteamGames/SteamGames";
-import SteamUserAvatar from "./SteamUserAvatar/SteamUserAvatar";
+import TitleDescription from "../TitleDescription/TitleDescription";
+import SteamUserPreview from "./SteamUserPreview/SteamUserPreview";
 import styles from "./steam-user.module.css";
+import moment from "moment";
 
 const SteamUser: React.FC<IUser> = (props) => {
   const {
@@ -21,29 +23,52 @@ const SteamUser: React.FC<IUser> = (props) => {
     vacBans,
     games,
     inventory,
+    steamLevel,
   } = props;
   return (
     <div className={styles.container}>
-      <div className={styles.socialContainer}>
-        <Card>
-          <SteamUserAvatar
-            avatars={{ avatar, avatarfull, avatarmedium }}
-            size={"avatarfull"}
-            borderColor="green"
+      <Card
+        cssStyles={{
+          justifyContent: "space-evenly",
+          width: "100%",
+          maxWidth: "70rem",
+          flexWrap: "wrap",
+        }}
+      >
+        {friends && (
+          <TitleDescription
+            title={"Friends"}
+            description={friends.length.toString()}
           />
-          <div className={styles.name}>
-            <span>{personaname}</span>
-          </div>
-          {loccountrycode && country_image && (
-            <div className={styles.country}>
-              <span>{loccountrycode}</span>
-              <img src={country_image} width={"48"} height={"36"} />
-            </div>
-          )}
-        </Card>
-      </div>
-
-      <div>{games && <SteamGames games={games} />}</div>
+        )}
+        {vacBans && (
+          <TitleDescription
+            title={"Vac Bans"}
+            description={vacBans.NumberOfVACBans.toString()}
+          />
+        )}
+        <SteamUserPreview {...props} />
+        {steamLevel && (
+          <TitleDescription
+            title={"Level"}
+            description={steamLevel.toString()}
+          />
+        )}
+        {timecreated && (
+          <TitleDescription
+            title={"Years"}
+            description={moment().diff(moment(timecreated), "years").toString()}
+          />
+        )}
+      </Card>
+      <Card
+        cssStyles={{
+          width: "100%",
+          maxWidth: "70rem",
+        }}
+      >
+        {games && <SteamGames games={games} />}
+      </Card>
     </div>
   );
 };

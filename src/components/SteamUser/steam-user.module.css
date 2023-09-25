@@ -1,20 +1,6 @@
 .container {
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 2rem;
-  gap: 3rem;
-}
-
-.socialContainer {
-  position: relative;
-  display: flex;
-  align-items: center;
-  border-radius: 2rem;
-  width: 100%;
-  max-width: 70rem;
-  box-sizing: border-box;
   gap: 3rem;
 }
 

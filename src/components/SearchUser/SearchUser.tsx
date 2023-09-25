@@ -13,23 +13,21 @@ const SearchUser: React.FC<ISearchUser> = (props) => {
   return (
     <div className={styles.container}>
       <div className={styles.inputContainer}>
-        <BsSearch color="black" />
         <input
-          type={"search"}
+          type={"text"}
           className={styles.input}
           placeholder={placeholder}
           onChange={(e) => setInputValue(e.target.value)}
         />
+        <BsSearch
+          color="black"
+          onClick={async () => {
+            const userData = await GetUser(inputValue);
+            onSearch(userData);
+          }}
+          style={{ cursor: "pointer" }}
+        />
       </div>
-      <button
-        className={styles.button}
-        onClick={async () => {
-          const userData = await GetUser(inputValue);
-          onSearch(userData);
-        }}
-      >
-        Search!
-      </button>
     </div>
   );
 };
