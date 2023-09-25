@@ -1,0 +1,7 @@
+.stats {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 3rem;
+  max-width: 75%;
+}

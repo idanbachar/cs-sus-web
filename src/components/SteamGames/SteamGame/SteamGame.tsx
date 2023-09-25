@@ -1,5 +1,5 @@
 import { ISteamGame } from "../../../interfaces/ISteamWorks";
-import TitleDescription from "../../TitleDescription/TitleDescription";
+import StatsItem from "../../Stats/StatsItem/StatsItem";
 
 const SteamGame: React.FC<ISteamGame> = (props) => {
   const { appid, img_icon_url, playtime_forever } = props;
@@ -7,9 +7,10 @@ const SteamGame: React.FC<ISteamGame> = (props) => {
   return (
     <div>
       <img src={img_icon_url} />
-      <TitleDescription
+      <StatsItem
         title={""}
-        description={`${playtime_forever} hrs`}
+        value={playtime_forever}
+        textAfterValue={"hrs"}
         cssStyles={{
           background: "none",
           color: "#7281c5",

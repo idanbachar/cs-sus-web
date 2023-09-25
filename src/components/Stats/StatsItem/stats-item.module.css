@@ -4,7 +4,18 @@
   box-sizing: border-box;
   padding: 1rem;
   min-width: 10rem;
+  font-size: 1.5rem;
   border-radius: 0.5rem;
+}
+
+.value {
+  font-weight: bold;
+}
+
+.titleValueContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media screen and (max-width: 580px) {

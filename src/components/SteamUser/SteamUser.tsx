@@ -1,8 +1,9 @@
 import { IUser } from "../../interfaces/IUser";
 import Card from "../Card/Card";
+import Stats from "../Stats/Stats";
 import SteamFriends from "../SteamFriends/SteamFriends";
 import SteamGames from "../SteamGames/SteamGames";
-import TitleDescription from "../TitleDescription/TitleDescription";
+import StatsItem from "../Stats/StatsItem/StatsItem";
 import SteamUserPreview from "./SteamUserPreview/SteamUserPreview";
 import styles from "./steam-user.module.css";
 import moment from "moment";
@@ -10,25 +11,21 @@ import moment from "moment";
 const SteamUser: React.FC<IUser> = (props) => {
   const {
     steamid,
-    personaname,
-    profileurl,
-    avatar,
-    avatarfull,
-    avatarmedium,
-    realname,
     timecreated,
-    loccountrycode,
-    country_image,
     friends,
     vacBans,
     games,
     inventory,
     steamLevel,
+    csgoStats,
   } = props;
 
-  const years_of_service = moment().diff(moment(timecreated), "years");
+  const years_of_service =
+    timecreated !== null && timecreated !== undefined
+      ? moment().diff(moment(timecreated), "years")
+      : -1;
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={steamid}>
       <Card
         cssStyles={{
           justifyContent: "space-around",
@@ -37,48 +34,20 @@ const SteamUser: React.FC<IUser> = (props) => {
         }}
       >
         <SteamUserPreview {...props} />
-        <div className={styles.stats}>
-          {friends && (
-            <TitleDescription
-              title={"Friends"}
-              description={friends.length.toString()}
-              isSus={friends.length < 7}
-            />
-          )}
-          {vacBans && (
-            <TitleDescription
-              title={"Bans"}
-              description={(
-                vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
-              ).toString()}
-              isSus={
-                vacBans.VACBanned ||
-                vacBans.NumberOfGameBans > 0 ||
-                vacBans.NumberOfVACBans > 0
-              }
-            />
-          )}
-          {steamLevel && (
-            <TitleDescription
-              title={"Level"}
-              description={steamLevel.toString()}
-              isSus={steamLevel < 5}
-            />
-          )}
-          {timecreated && (
-            <TitleDescription
-              title={"Years"}
-              description={years_of_service.toString()}
-              isSus={years_of_service <= 3}
-            />
-          )}
-        </div>
+        <Stats
+          games={games}
+          friends={friends}
+          vacBans={vacBans}
+          timecreated={years_of_service}
+          steamLevel={steamLevel}
+          csgoStats={csgoStats}
+        />
       </Card>
       {games && (
         <>
-          <TitleDescription
+          <StatsItem
             title="Games"
-            description={games.length.toString()}
+            value={games.length}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card
@@ -93,9 +62,9 @@ const SteamUser: React.FC<IUser> = (props) => {
       )}
       {friends && (
         <>
-          <TitleDescription
+          <StatsItem
             title="Friends"
-            description={friends.length.toString()}
+            value={friends.length}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card

@@ -1,9 +1,8 @@
 import {
-  ISteamFriend,
   ISteamGame,
   ISteamPlayer,
   ISteamPlayerBans,
-  ISteamUserInventory,
+  ISteamStatsDictionary,
 } from "./ISteamWorks";
 
 export interface IUser {
@@ -23,6 +22,7 @@ export interface IUser {
   inventory: any | null;
   totalBadges: number;
   steamLevel: number;
+  csgoStats: ISteamStatsDictionary | null;
 }
 
 export interface ISteamUserAvatar {

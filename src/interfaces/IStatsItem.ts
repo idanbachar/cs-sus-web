@@ -1,7 +1,8 @@
-export interface ITitleDescription {
+export interface IStatsItem {
   title: string;
-  description: string;
+  value: number;
   isSus?: boolean;
   cssStyles?: React.CSSProperties;
   isArrow?: boolean;
+  textAfterValue?: string;
 }

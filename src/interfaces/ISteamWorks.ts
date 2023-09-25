@@ -64,6 +64,20 @@ export interface ISteamUserStatsForGame {
       value: number;
     }
   ];
+  achievements: [
+    {
+      name: string;
+      achieved: number;
+    }
+  ];
+}
+
+export interface ISteamStatsDictionary {
+  [name: string]: number;
+}
+
+export interface ISteamAchievementsDictionary {
+  [name: string]: boolean;
 }
 export interface ISteamUserInventory {
   total_inventory_count: number;
