@@ -29,68 +29,75 @@ const SteamUser: React.FC<IUser> = (props) => {
     <div className={styles.container}>
       <Card
         cssStyles={{
-          justifyContent: "space-evenly",
+          justifyContent: "space-around",
           width: "100%",
           maxWidth: "70rem",
-          flexWrap: "wrap",
         }}
       >
-        {friends && (
-          <TitleDescription
-            title={"Friends"}
-            description={friends.length.toString()}
-          />
-        )}
-        {vacBans && (
-          <TitleDescription
-            title={"Vac Bans"}
-            description={vacBans.NumberOfVACBans.toString()}
-          />
-        )}
         <SteamUserPreview {...props} />
-        {steamLevel && (
-          <TitleDescription
-            title={"Level"}
-            description={steamLevel.toString()}
-          />
-        )}
-        {timecreated && (
-          <TitleDescription
-            title={"Years"}
-            description={moment().diff(moment(timecreated), "years").toString()}
-          />
-        )}
+        <div className={styles.stats}>
+          {friends && (
+            <TitleDescription
+              title={"Friends"}
+              description={friends.length.toString()}
+            />
+          )}
+          {vacBans && (
+            <TitleDescription
+              title={"Vac Bans"}
+              description={vacBans.NumberOfVACBans.toString()}
+            />
+          )}
+          {steamLevel && (
+            <TitleDescription
+              title={"Level"}
+              description={steamLevel.toString()}
+            />
+          )}
+          {timecreated && (
+            <TitleDescription
+              title={"Years"}
+              description={moment()
+                .diff(moment(timecreated), "years")
+                .toString()}
+            />
+          )}
+        </div>
       </Card>
       {games && (
-        <TitleDescription
-          title="Games"
-          description={games.length.toString()}
-          cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
-        />
+        <>
+          <TitleDescription
+            title="Games"
+            description={games.length.toString()}
+            cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
+          />
+          <Card
+            cssStyles={{
+              width: "100%",
+              maxWidth: "70rem",
+            }}
+          >
+            {games && <SteamGames games={games} />}
+          </Card>
+        </>
       )}
-      <Card
-        cssStyles={{
-          width: "100%",
-          maxWidth: "70rem",
-        }}
-      >
-        {games && <SteamGames games={games} />}
-      </Card>
       {friends && (
-        <TitleDescription
-          title="Friends"
-          description={friends.length.toString()}
-          cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
-        />
+        <>
+          <TitleDescription
+            title="Friends"
+            description={friends.length.toString()}
+            cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
+          />
+          <Card
+            cssStyles={{
+              width: "100%",
+              maxWidth: "70rem",
+            }}
+          >
+            <SteamFriends friends={friends} />
+          </Card>
+        </>
       )}
-      <Card
-        cssStyles={{
-          width: "100%",
-          maxWidth: "70rem",
-        }}
-      >
-        {friends && <SteamFriends friends={friends} />}
-      </Card>
     </div>
   );
 };

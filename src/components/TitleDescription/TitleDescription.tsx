@@ -20,6 +20,7 @@ const TitleDescription: React.FC<ITitleDescription> = (props) => {
         <span
           style={{
             color,
+            border: color && `2px solid ${color}`,
             fontWeight: "bold",
           }}
         >

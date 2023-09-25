@@ -6,3 +6,9 @@
   min-width: 10rem;
   border-radius: 0.5rem;
 }
+
+@media screen and (max-width: 580px) {
+  .container {
+    width: 100%;
+  }
+}

@@ -22,8 +22,14 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
           spaceBetween={20}
           navigation={true}
           breakpoints={{
-            675: {
+            400: {
+              slidesPerView: 1,
+            },
+            500: {
               slidesPerView: 2,
+            },
+            675: {
+              slidesPerView: 3,
             },
             768: {
               slidesPerView: 4,

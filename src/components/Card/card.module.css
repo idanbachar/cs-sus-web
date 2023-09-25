@@ -2,9 +2,16 @@
   position: relative;
   background-color: #030303;
   padding-bottom: 1rem;
-  /* border-radius: 1rem; */
   display: flex;
   align-items: center;
   box-sizing: border-box;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 580px) {
+  .cardContainer {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
