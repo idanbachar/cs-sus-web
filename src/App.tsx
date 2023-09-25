@@ -1,11 +1,32 @@
 import "./App.css";
 import SearchUser from "./components/SearchUser/SearchUser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IUser } from "./interfaces/IUser";
 import SteamUser from "./components/SteamUser/SteamUser";
+import { useLocation } from "react-router-dom";
+import queryString from "query-string";
+import { GetUser } from "./services/steamService";
 
 const App = () => {
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const paramsString =
+      location.search.indexOf("?") !== -1
+        ? location.search.split("?")[1]
+        : undefined;
+    if (paramsString) {
+      const params = queryString.parse(paramsString);
+      const steamUrl = params?.steamUrl as string;
+      if (steamUrl) {
+        (async () => {
+          const steamUserData = await GetUser(steamUrl);
+          setSteamUser(steamUserData);
+        })();
+      }
+    }
+  }, [location]);
 
   return (
     <div className="App">

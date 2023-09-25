@@ -14,7 +14,9 @@ const SteamGame: React.FC<ISteamGame> = (props) => {
           background: "none",
           color: "#7281c5",
         }}
-        isSus={playtime_forever < 600 && appid === 730 ? true : undefined}
+        isSus={
+          appid === 730 ? (playtime_forever < 600 ? true : false) : undefined
+        }
       />
     </div>
   );

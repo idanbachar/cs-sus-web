@@ -42,7 +42,7 @@ const SteamUser: React.FC<IUser> = (props) => {
             <TitleDescription
               title={"Friends"}
               description={friends.length.toString()}
-              isSus={friends.length < 8}
+              isSus={friends.length < 7}
             />
           )}
           {vacBans && (
@@ -51,7 +51,11 @@ const SteamUser: React.FC<IUser> = (props) => {
               description={(
                 vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
               ).toString()}
-              isSus={vacBans.VACBanned}
+              isSus={
+                vacBans.VACBanned ||
+                vacBans.NumberOfGameBans > 0 ||
+                vacBans.NumberOfVACBans > 0
+              }
             />
           )}
           {steamLevel && (

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ISteamFriend, ISteamPlayer } from "../../../interfaces/ISteamWorks";
 import SteamUserAvatar from "../../SteamUser/SteamUserAvatar/SteamUserAvatar";
 import styles from "./steam-friend.module.css";
@@ -15,8 +16,14 @@ const SteamFriend: React.FC<ISteamPlayer> = (props) => {
     loccountrycode,
   } = props;
 
+  const navigate = useNavigate();
+
   return (
-    <div>
+    <div
+      onClick={() => {
+        navigate(`?steamUrl=${profileurl}`);
+      }}
+    >
       <SteamUserAvatar
         avatars={{ avatar, avatarfull, avatarmedium }}
         size={"avatarfull"}
