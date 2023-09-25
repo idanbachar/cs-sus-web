@@ -22,13 +22,13 @@ const SteamGames: React.FC<ISteamGames> = (props) => {
           navigation={true}
           breakpoints={{
             675: {
-              slidesPerView: games.length === 1 ? 1 : 2,
+              slidesPerView: games.length < 4 ? games.length : 2,
             },
             768: {
-              slidesPerView: games.length === 1 ? 1 : 3,
+              slidesPerView: games.length < 4 ? games.length : 3,
             },
             1400: {
-              slidesPerView: games.length === 1 ? 1 : 3,
+              slidesPerView: games.length < 4 ? games.length : 3,
             },
           }}
         >

@@ -23,19 +23,19 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
           navigation={true}
           breakpoints={{
             400: {
-              slidesPerView: 1,
+              slidesPerView: friends.length < 4 ? friends.length : 1,
             },
             500: {
-              slidesPerView: 2,
+              slidesPerView: friends.length < 4 ? friends.length : 2,
             },
             675: {
-              slidesPerView: 3,
+              slidesPerView: friends.length < 4 ? friends.length : 3,
             },
             768: {
-              slidesPerView: 4,
+              slidesPerView: friends.length < 4 ? friends.length : 4,
             },
             1400: {
-              slidesPerView: 4,
+              slidesPerView: friends.length < 4 ? friends.length : 4,
             },
           }}
         >
