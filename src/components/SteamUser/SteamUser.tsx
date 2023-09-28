@@ -7,6 +7,7 @@ import StatsItem from "../Stats/StatsItem/StatsItem";
 import SteamUserPreview from "./SteamUserPreview/SteamUserPreview";
 import styles from "./steam-user.module.css";
 import moment from "moment";
+import Inventory from "../Inventory/Inventory";
 
 const SteamUser: React.FC<IUser> = (props) => {
   const {
@@ -18,6 +19,7 @@ const SteamUser: React.FC<IUser> = (props) => {
     inventory,
     steamLevel,
     csgoStats,
+    total_games,
   } = props;
 
   const years_of_service =
@@ -35,7 +37,7 @@ const SteamUser: React.FC<IUser> = (props) => {
       >
         <SteamUserPreview {...props} />
         <Stats
-          games={games}
+          total_games={total_games}
           friends={friends}
           vacBans={vacBans}
           timecreated={years_of_service}
@@ -43,11 +45,15 @@ const SteamUser: React.FC<IUser> = (props) => {
           csgoStats={csgoStats}
         />
       </Card>
-      {games && (
+      {inventory && (
         <>
           <StatsItem
-            title="Games"
-            value={games.length}
+            info={[
+              {
+                title: "Inventory",
+                value: inventory.length,
+              },
+            ]}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card
@@ -56,15 +62,49 @@ const SteamUser: React.FC<IUser> = (props) => {
               maxWidth: "70rem",
             }}
           >
-            {games && <SteamGames games={games} />}
+            <Inventory items={inventory} />
+          </Card>
+        </>
+      )}
+      {games && (
+        <>
+          <StatsItem
+            info={[
+              {
+                title: "Total Games",
+                value: total_games,
+              },
+              {
+                title: "CS2 hours",
+                value:
+                  games.find((game) => game.appid === 730)?.playtime_forever ||
+                  0,
+              },
+            ]}
+            cssStyles={{
+              gap: "1rem",
+              display: "flex",
+            }}
+          />
+          <Card
+            cssStyles={{
+              width: "100%",
+              maxWidth: "70rem",
+            }}
+          >
+            <SteamGames games={games} />
           </Card>
         </>
       )}
       {friends && (
         <>
           <StatsItem
-            title="Friends"
-            value={friends.length}
+            info={[
+              {
+                title: "Friends",
+                value: friends.length,
+              },
+            ]}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card

@@ -1,3 +1,4 @@
+import { IInventory, IInventoryItem } from "./IInventory";
 import {
   ISteamGame,
   ISteamPlayer,
@@ -19,10 +20,11 @@ export interface IUser {
   friends: ISteamPlayer[] | null;
   vacBans: ISteamPlayerBans | null;
   games: ISteamGame[] | null;
-  inventory: any | null;
+  inventory: IInventoryItem[] | null;
   totalBadges: number;
   steamLevel: number;
   csgoStats: ISteamStatsDictionary | null;
+  total_games: number;
 }
 
 export interface ISteamUserAvatar {
@@ -35,4 +37,10 @@ export interface ISteamUserAvatar {
   personaname?: string;
   borderColor?: "darkred" | "green";
   cssStyles?: React.CSSProperties;
+}
+
+export interface ILoggedInUser {
+  username: string;
+  id: string;
+  avatar: string;
 }

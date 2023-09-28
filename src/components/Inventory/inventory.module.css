@@ -1,0 +1,7 @@
+.inventory {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: start;
+  width: 100%;
+}

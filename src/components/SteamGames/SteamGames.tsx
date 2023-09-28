@@ -10,6 +10,8 @@ import SwiperCore from "swiper";
 
 const SteamGames: React.FC<ISteamGames> = (props) => {
   const { games } = props;
+  const games_filtered = games.filter((game) => game.playtime_forever > 50);
+
   SwiperCore.use([Navigation]);
   return (
     <>
@@ -20,19 +22,9 @@ const SteamGames: React.FC<ISteamGames> = (props) => {
           initialSlide={0}
           spaceBetween={20}
           navigation={true}
-          breakpoints={{
-            675: {
-              slidesPerView: games.length < 4 ? games.length : 2,
-            },
-            768: {
-              slidesPerView: games.length < 4 ? games.length : 3,
-            },
-            1400: {
-              slidesPerView: games.length < 4 ? games.length : 3,
-            },
-          }}
+          slidesPerView={2}
         >
-          {games.map((game, index) => (
+          {games_filtered.map((game, index) => (
             <SwiperSlide key={index}>
               <Card
                 cssStyles={{

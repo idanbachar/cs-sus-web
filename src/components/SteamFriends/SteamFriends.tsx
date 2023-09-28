@@ -21,23 +21,7 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
           initialSlide={0}
           spaceBetween={20}
           navigation={true}
-          breakpoints={{
-            400: {
-              slidesPerView: friends.length < 4 ? friends.length : 1,
-            },
-            500: {
-              slidesPerView: friends.length < 4 ? friends.length : 2,
-            },
-            675: {
-              slidesPerView: friends.length < 4 ? friends.length : 3,
-            },
-            768: {
-              slidesPerView: friends.length < 4 ? friends.length : 4,
-            },
-            1400: {
-              slidesPerView: friends.length < 4 ? friends.length : 4,
-            },
-          }}
+          slidesPerView={2}
         >
           {friends.map((friend, index) => (
             <SwiperSlide key={index}>

@@ -8,8 +8,12 @@ const SteamGame: React.FC<ISteamGame> = (props) => {
     <div>
       <img src={img_icon_url} />
       <StatsItem
-        title={""}
-        value={playtime_forever}
+        info={[
+          {
+            title: "",
+            value: playtime_forever,
+          },
+        ]}
         textAfterValue={"hrs"}
         cssStyles={{
           background: "none",

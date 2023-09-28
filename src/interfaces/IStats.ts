@@ -8,7 +8,7 @@ import {
 export interface IStats {
   friends: ISteamPlayer[] | null;
   vacBans: ISteamPlayerBans | null;
-  games: ISteamGame[] | null;
+  total_games: number | null;
   timecreated: number | null;
   steamLevel: number | null;
   csgoStats: ISteamStatsDictionary | null;

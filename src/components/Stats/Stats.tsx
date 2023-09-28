@@ -3,25 +3,34 @@ import StatsItem from "./StatsItem/StatsItem";
 import styles from "./stats.module.css";
 
 const Stats: React.FC<IStats> = (props) => {
-  const { friends, vacBans, games, timecreated, steamLevel, csgoStats } = props;
+  const { friends, vacBans, total_games, timecreated, steamLevel, csgoStats } =
+    props;
 
   return (
     <div className={styles.stats}>
       <StatsItem
-        title={"Friends"}
-        value={friends !== undefined && friends !== null ? friends.length : -1}
+        info={[
+          {
+            title: "Friends",
+            value:
+              friends !== undefined && friends !== null ? friends.length : -1,
+          },
+        ]}
         isSus={
           friends !== undefined && friends !== null ? friends.length < 7 : true
         }
       />
 
       <StatsItem
-        title={"Bans"}
-        value={
-          vacBans !== undefined && vacBans !== null
-            ? vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
-            : -1
-        }
+        info={[
+          {
+            title: "Bans",
+            value:
+              vacBans !== undefined && vacBans !== null
+                ? vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
+                : -1,
+          },
+        ]}
         isSus={
           vacBans !== undefined && vacBans !== null
             ? vacBans.VACBanned ||
@@ -32,10 +41,13 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        title={"Level"}
-        value={
-          steamLevel !== undefined && steamLevel !== null ? steamLevel : -1
-        }
+        info={[
+          {
+            title: "Level",
+            value:
+              steamLevel !== undefined && steamLevel !== null ? steamLevel : -1,
+          },
+        ]}
         isSus={
           steamLevel !== undefined && steamLevel !== null
             ? steamLevel < 5
@@ -44,10 +56,15 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        title={"Years"}
-        value={
-          timecreated !== undefined && timecreated !== null ? timecreated : -1
-        }
+        info={[
+          {
+            title: "Years",
+            value:
+              timecreated !== undefined && timecreated !== null
+                ? timecreated
+                : -1,
+          },
+        ]}
         isSus={
           timecreated !== undefined && timecreated !== null
             ? timecreated <= 3
@@ -56,19 +73,33 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        title={"Games"}
-        value={games !== undefined && games !== null ? games.length : -1}
-        isSus={games !== undefined && games !== null ? games.length <= 3 : true}
+        info={[
+          {
+            title: "Games",
+            value:
+              total_games !== undefined && total_games !== null
+                ? total_games
+                : -1,
+          },
+        ]}
+        isSus={
+          total_games !== undefined && total_games !== null
+            ? total_games <= 3
+            : true
+        }
       />
 
       <>
         <StatsItem
-          title={"Kills"}
-          value={
-            csgoStats !== undefined && csgoStats !== null
-              ? csgoStats["total_kills"]
-              : -1
-          }
+          info={[
+            {
+              title: "Kills",
+              value:
+                csgoStats !== undefined && csgoStats !== null
+                  ? csgoStats["total_kills"]
+                  : -1,
+            },
+          ]}
           isSus={
             csgoStats !== undefined && csgoStats !== null
               ? Math.round(
@@ -83,21 +114,27 @@ const Stats: React.FC<IStats> = (props) => {
           }
         />
         <StatsItem
-          title={"Wins"}
-          value={
-            csgoStats !== undefined && csgoStats !== null
-              ? csgoStats["total_wins"]
-              : -1
-          }
+          info={[
+            {
+              title: "Wins",
+              value:
+                csgoStats !== undefined && csgoStats !== null
+                  ? csgoStats["total_wins"]
+                  : -1,
+            },
+          ]}
           isSus={csgoStats !== undefined && csgoStats !== null ? false : true}
         />
         <StatsItem
-          title={"Headshots"}
-          value={
-            csgoStats !== undefined && csgoStats !== null
-              ? csgoStats["total_kills_headshot"]
-              : -1
-          }
+          info={[
+            {
+              title: "Headshots",
+              value:
+                csgoStats !== undefined && csgoStats !== null
+                  ? csgoStats["total_kills_headshot"]
+                  : -1,
+            },
+          ]}
           isSus={
             csgoStats !== undefined && csgoStats !== null
               ? Math.round(

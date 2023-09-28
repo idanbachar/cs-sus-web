@@ -1,6 +1,6 @@
 .signIn {
-  background-color: #000000;
-  border: 1px solid white;
+  background-color: rgb(52, 176, 81);
+  border-radius: 0.2rem;
   height: 3rem;
   min-width: 10rem;
   color: white;
@@ -8,10 +8,11 @@
   box-sizing: border-box;
   padding: 1rem;
   position: absolute;
-  right: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   align-items: center;
+  text-decoration: none;
   cursor: pointer;
 }

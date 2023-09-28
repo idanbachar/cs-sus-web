@@ -3,12 +3,19 @@ import SearchUser from "./components/SearchUser/SearchUser";
 import { useEffect, useState } from "react";
 import { IUser } from "./interfaces/IUser";
 import SteamUser from "./components/SteamUser/SteamUser";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { GetUser } from "./services/steamService";
 import { db } from "./firebase/config";
 import { collection, getDocs } from "firebase/firestore/lite";
 import Header from "./components/Header/Header";
 import axios from "axios";
+import {
+  CheckIsLoggedIn,
+  GetLoggedInParamsFromUrl,
+  GetLoggedInUserDataFromCookies,
+} from "./services/loginService";
+import { useDispatch } from "react-redux";
+import { setUser } from "./redux/slices/userSlice";
 
 const App = () => {
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
@@ -16,33 +23,49 @@ const App = () => {
   const steamUrlParam = queryParameters.get("steamUrl");
 
   const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  (async () => {
-    const usersCollection = collection(db, "users");
-    const usersSnapshot = await getDocs(usersCollection);
-    const usersList = usersSnapshot.docs.map((doc) => doc.data());
-    console.log("usersList", usersList);
+  // (async () => {
+  //   const usersCollection = collection(db, "users");
+  //   const usersSnapshot = await getDocs(usersCollection);
+  //   const usersList = usersSnapshot.docs.map((doc) => doc.data());
+  //   console.log("usersList", usersList);
 
-    return usersList;
-  })();
+  //   return usersList;
+  // })();
 
   useEffect(() => {
+    // const steamDataStorage = localStorage.getItem("steamData");
+    // if (steamDataStorage !== null) {
+    //   console.log("steamDataStorage", JSON.parse(steamDataStorage));
+    //   setSteamUser(JSON.parse(steamDataStorage) as IUser);
+    // } else {
     if (steamUrlParam) {
       (async () => {
         const steamUserData = await GetUser(steamUrlParam);
         setSteamUser(steamUserData);
       })();
     }
+    // }
   }, [location]);
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const urlParams = window.location.search;
-  //     // const userData = JSON.parse(JSON.stringify(Object.fromEntries(urlParams.entries())));
-  //     console.log("urlParams", JSON.parse(decodeURI(urlParams)));
-  //     // console.log("userData", userData);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    const isLoggedIn = CheckIsLoggedIn();
+    if (!isLoggedIn) {
+      if (location.pathname === "/login-succeed") {
+        const loggedInUserData = GetLoggedInParamsFromUrl(queryParameters);
+        if (loggedInUserData) {
+          navigate(`/`);
+        }
+      }
+    } else {
+      const loggedInUserData = GetLoggedInUserDataFromCookies();
+      if (loggedInUserData) {
+        dispatch(setUser(loggedInUserData));
+      }
+    }
+  }, [location]);
 
   return (
     <div className="App">

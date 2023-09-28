@@ -1,8 +1,9 @@
 export interface IStatsItem {
-  title: string;
-  value: number;
+  info: {
+    title: string;
+    value: number;
+  }[];
   isSus?: boolean;
   cssStyles?: React.CSSProperties;
-  isArrow?: boolean;
   textAfterValue?: string;
 }
