@@ -2,6 +2,6 @@
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 1rem;
   max-width: 75%;
 }

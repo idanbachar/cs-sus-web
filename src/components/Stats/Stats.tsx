@@ -3,11 +3,25 @@ import StatsItem from "./StatsItem/StatsItem";
 import styles from "./stats.module.css";
 
 const Stats: React.FC<IStats> = (props) => {
-  const { friends, vacBans, total_games, timecreated, steamLevel, csgoStats } =
-    props;
+  const { friends, vacBans, total_games, timecreated, steamLevel } = props;
 
   return (
     <div className={styles.stats}>
+      <StatsItem
+        info={[
+          {
+            title: "Level",
+            value:
+              steamLevel !== undefined && steamLevel !== null ? steamLevel : -1,
+          },
+        ]}
+        isSus={
+          steamLevel !== undefined && steamLevel !== null
+            ? steamLevel < 5
+            : true
+        }
+      />
+
       <StatsItem
         info={[
           {
@@ -36,21 +50,6 @@ const Stats: React.FC<IStats> = (props) => {
             ? vacBans.VACBanned ||
               vacBans.NumberOfGameBans > 0 ||
               vacBans.NumberOfVACBans > 0
-            : true
-        }
-      />
-
-      <StatsItem
-        info={[
-          {
-            title: "Level",
-            value:
-              steamLevel !== undefined && steamLevel !== null ? steamLevel : -1,
-          },
-        ]}
-        isSus={
-          steamLevel !== undefined && steamLevel !== null
-            ? steamLevel < 5
             : true
         }
       />
@@ -88,67 +87,6 @@ const Stats: React.FC<IStats> = (props) => {
             : true
         }
       />
-
-      <>
-        <StatsItem
-          info={[
-            {
-              title: "Kills",
-              value:
-                csgoStats !== undefined && csgoStats !== null
-                  ? csgoStats["total_kills"]
-                  : -1,
-            },
-          ]}
-          isSus={
-            csgoStats !== undefined && csgoStats !== null
-              ? Math.round(
-                  (csgoStats["total_kills_headshot"] /
-                    csgoStats["total_kills"]) *
-                    100
-                ) > 60 &&
-                steamLevel !== undefined &&
-                steamLevel !== null &&
-                steamLevel <= 4
-              : true
-          }
-        />
-        <StatsItem
-          info={[
-            {
-              title: "Wins",
-              value:
-                csgoStats !== undefined && csgoStats !== null
-                  ? csgoStats["total_wins"]
-                  : -1,
-            },
-          ]}
-          isSus={csgoStats !== undefined && csgoStats !== null ? false : true}
-        />
-        <StatsItem
-          info={[
-            {
-              title: "Headshots",
-              value:
-                csgoStats !== undefined && csgoStats !== null
-                  ? csgoStats["total_kills_headshot"]
-                  : -1,
-            },
-          ]}
-          isSus={
-            csgoStats !== undefined && csgoStats !== null
-              ? Math.round(
-                  (csgoStats["total_kills_headshot"] /
-                    csgoStats["total_kills"]) *
-                    100
-                ) > 60 &&
-                steamLevel !== undefined &&
-                steamLevel !== null &&
-                steamLevel <= 4
-              : true
-          }
-        />
-      </>
     </div>
   );
 };

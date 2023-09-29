@@ -34,3 +34,11 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+a:visited {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}

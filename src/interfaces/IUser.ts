@@ -20,6 +20,7 @@ export interface IUser {
   friends: ISteamPlayer[] | null;
   vacBans: ISteamPlayerBans | null;
   games: ISteamGame[] | null;
+  cs2: ISteamGame | null;
   inventory: IInventoryItem[] | null;
   totalBadges: number;
   steamLevel: number;
@@ -43,4 +44,5 @@ export interface ILoggedInUser {
   username: string;
   id: string;
   avatar: string;
+  profileurl: string;
 }

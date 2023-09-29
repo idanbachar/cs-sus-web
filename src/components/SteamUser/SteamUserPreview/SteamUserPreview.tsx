@@ -1,6 +1,5 @@
 import { ISteamPlayer } from "../../../interfaces/ISteamWorks";
 import { IUser } from "../../../interfaces/IUser";
-import Card from "../../Card/Card";
 import SteamUserAvatar from "../SteamUserAvatar/SteamUserAvatar";
 import styles from "../steam-user.module.css";
 
@@ -12,12 +11,8 @@ const SteamUserPreview: React.FC<ISteamPlayer | IUser> = (props) => {
     avatar,
     avatarfull,
     avatarmedium,
-    realname,
-    timecreated,
     loccountrycode,
     country_image,
-    steamLevel,
-    totalBadges,
   } = props;
   return (
     <div>

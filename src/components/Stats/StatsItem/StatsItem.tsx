@@ -6,10 +6,7 @@ const StatsItem: React.FC<IStatsItem> = (props) => {
   const { info, cssStyles, isSus, textAfterValue = "" } = props;
   const color = isSus !== undefined ? (isSus ? "darkred" : "green") : "";
   return (
-    <div
-      className={styles.container}
-      style={{ ...cssStyles, border: color && `2px solid ${color}` }}
-    >
+    <div className={styles.container} style={{ ...cssStyles }}>
       {info.map((infoItem, key) => (
         <Fragment key={key}>
           {key !== 0 && key !== info.length ? "|" : ""}

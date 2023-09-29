@@ -2,12 +2,13 @@ import { ISteamGame } from "../../../interfaces/ISteamWorks";
 import StatsItem from "../../Stats/StatsItem/StatsItem";
 
 const SteamGame: React.FC<ISteamGame> = (props) => {
-  const { appid, img_icon_url, playtime_forever } = props;
+  const { appid, img_icon_url, playtime_forever, name } = props;
 
   return (
-    <div>
+    <>
+      <span>{name}</span>
       <img src={img_icon_url} />
-      <StatsItem
+      {/* <StatsItem
         info={[
           {
             title: "",
@@ -22,8 +23,8 @@ const SteamGame: React.FC<ISteamGame> = (props) => {
         isSus={
           appid === 730 ? (playtime_forever < 600 ? true : false) : undefined
         }
-      />
-    </div>
+      /> */}
+    </>
   );
 };
 

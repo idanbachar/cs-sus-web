@@ -36,18 +36,12 @@ const App = () => {
   // })();
 
   useEffect(() => {
-    // const steamDataStorage = localStorage.getItem("steamData");
-    // if (steamDataStorage !== null) {
-    //   console.log("steamDataStorage", JSON.parse(steamDataStorage));
-    //   setSteamUser(JSON.parse(steamDataStorage) as IUser);
-    // } else {
     if (steamUrlParam) {
       (async () => {
         const steamUserData = await GetUser(steamUrlParam);
         setSteamUser(steamUserData);
       })();
     }
-    // }
   }, [location]);
 
   useEffect(() => {

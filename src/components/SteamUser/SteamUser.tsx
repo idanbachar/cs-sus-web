@@ -8,6 +8,8 @@ import SteamUserPreview from "./SteamUserPreview/SteamUserPreview";
 import styles from "./steam-user.module.css";
 import moment from "moment";
 import Inventory from "../Inventory/Inventory";
+import SteamGame from "../SteamGames/SteamGame/SteamGame";
+import CounterStrikeStats from "../Stats/CounterStrikeStats/CounterStrikeStats";
 
 const SteamUser: React.FC<IUser> = (props) => {
   const {
@@ -20,6 +22,7 @@ const SteamUser: React.FC<IUser> = (props) => {
     steamLevel,
     csgoStats,
     total_games,
+    cs2,
   } = props;
 
   const years_of_service =
@@ -42,7 +45,6 @@ const SteamUser: React.FC<IUser> = (props) => {
           vacBans={vacBans}
           timecreated={years_of_service}
           steamLevel={steamLevel}
-          csgoStats={csgoStats}
         />
       </Card>
       {inventory && (
@@ -66,19 +68,34 @@ const SteamUser: React.FC<IUser> = (props) => {
           </Card>
         </>
       )}
-      {games && (
+      {games && cs2 && (
         <>
           <StatsItem
             info={[
               {
-                title: "Total Games",
-                value: total_games,
+                title: "Play time",
+                value: cs2.playtime_forever || 0,
               },
               {
-                title: "CS2 hours",
+                title: "Kills",
                 value:
-                  games.find((game) => game.appid === 730)?.playtime_forever ||
-                  0,
+                  csgoStats !== undefined && csgoStats !== null
+                    ? csgoStats["total_kills"]
+                    : -1,
+              },
+              {
+                title: "Wins",
+                value:
+                  csgoStats !== undefined && csgoStats !== null
+                    ? csgoStats["total_wins"]
+                    : -1,
+              },
+              {
+                title: "Headshots",
+                value:
+                  csgoStats !== undefined && csgoStats !== null
+                    ? csgoStats["total_kills_headshot"]
+                    : -1,
               },
             ]}
             cssStyles={{
@@ -90,9 +107,11 @@ const SteamUser: React.FC<IUser> = (props) => {
             cssStyles={{
               width: "100%",
               maxWidth: "70rem",
+              justifyContent: "space-evenly",
             }}
           >
-            <SteamGames games={games} />
+            <SteamGame {...cs2} />
+            <CounterStrikeStats {...{ csgoStats, steamLevel, vacBans }} />
           </Card>
         </>
       )}
