@@ -26,38 +26,22 @@ const CounterStrikeGame: React.FC<ICS2 & { cheater_percentage: number }> = (
       </div>
       <div className={styles.stats}>
         <StatsItem
-          info={[
-            {
-              title: "Playtime",
-              value: playtime_forever !== null ? playtime_forever : -1,
-            },
-          ]}
+          title={"Playtime"}
+          value={playtime_forever !== null ? playtime_forever : -1}
           textAfterValue="hrs"
-        />
-
-        <StatsItem
-          info={[
-            {
-              title: "Wins",
-              value: stats !== null ? stats.total_wins : -1,
-            },
-          ]}
+          isSus={playtime_forever < 600}
         />
         <StatsItem
-          info={[
-            {
-              title: "Headshots",
-              value: stats !== null ? stats.total_kills_headshot : -1,
-            },
-          ]}
+          title={"Wins"}
+          value={stats !== null ? stats.total_wins : -1}
         />
         <StatsItem
-          info={[
-            {
-              title: "Kills",
-              value: stats !== null ? stats.total_kills : -1,
-            },
-          ]}
+          title={"Headshots"}
+          value={stats !== null ? stats.total_kills_headshot : -1}
+        />
+        <StatsItem
+          title={"Kills"}
+          value={stats !== null ? stats.total_kills : -1}
         />
       </div>
     </div>

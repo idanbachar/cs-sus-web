@@ -15,15 +15,12 @@ const Stats: React.FC<IStats> = (props) => {
   return (
     <div className={styles.stats}>
       <StatsItem
-        info={[
-          {
-            title: "Bans",
-            value:
-              vacBans !== undefined && vacBans !== null
-                ? vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
-                : -1,
-          },
-        ]}
+        title={"Bans"}
+        value={
+          vacBans !== undefined && vacBans !== null
+            ? vacBans.NumberOfVACBans + vacBans.NumberOfGameBans
+            : -1
+        }
         isSus={
           vacBans !== undefined && vacBans !== null
             ? vacBans.VACBanned ||
@@ -33,25 +30,17 @@ const Stats: React.FC<IStats> = (props) => {
         }
       />
       <StatsItem
-        info={[
-          {
-            title: "Friends",
-            value:
-              friends !== undefined && friends !== null ? friends.length : -1,
-          },
-        ]}
+        title={"Friends"}
+        value={friends !== undefined && friends !== null ? friends.length : -1}
         isSus={
-          friends !== undefined && friends !== null ? friends.length < 7 : true
+          friends !== undefined && friends !== null ? friends.length < 5 : true
         }
       />
       <StatsItem
-        info={[
-          {
-            title: "Level",
-            value:
-              steamLevel !== undefined && steamLevel !== null ? steamLevel : -1,
-          },
-        ]}
+        title={"Level"}
+        value={
+          steamLevel !== undefined && steamLevel !== null ? steamLevel : -1
+        }
         isSus={
           steamLevel !== undefined && steamLevel !== null
             ? steamLevel < 5
@@ -60,15 +49,10 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        info={[
-          {
-            title: "Years",
-            value:
-              timecreated !== undefined && timecreated !== null
-                ? timecreated
-                : -1,
-          },
-        ]}
+        title={"Years"}
+        value={
+          timecreated !== undefined && timecreated !== null ? timecreated : -1
+        }
         isSus={
           timecreated !== undefined && timecreated !== null
             ? timecreated <= 3
@@ -77,15 +61,10 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        info={[
-          {
-            title: "Games",
-            value:
-              total_games !== undefined && total_games !== null
-                ? total_games
-                : -1,
-          },
-        ]}
+        title={"Games"}
+        value={
+          total_games !== undefined && total_games !== null ? total_games : -1
+        }
         isSus={
           total_games !== undefined && total_games !== null
             ? total_games <= 3
@@ -94,18 +73,13 @@ const Stats: React.FC<IStats> = (props) => {
       />
 
       <StatsItem
-        info={[
-          {
-            title: "Badges",
-            value:
-              totalBadges !== undefined && totalBadges !== null
-                ? totalBadges
-                : -1,
-          },
-        ]}
+        title={"Badges"}
+        value={
+          totalBadges !== undefined && totalBadges !== null ? totalBadges : -1
+        }
         isSus={
           totalBadges !== undefined && totalBadges !== null
-            ? totalBadges <= 3
+            ? totalBadges < 4
             : true
         }
       />

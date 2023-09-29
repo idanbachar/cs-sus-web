@@ -53,12 +53,8 @@ const SteamUser: React.FC<IUser> = (props) => {
       {inventory && (
         <>
           <StatsItem
-            info={[
-              {
-                title: "Inventory",
-                value: inventory.length,
-              },
-            ]}
+            title={"Inventory"}
+            value={inventory.length}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card
@@ -91,17 +87,19 @@ const SteamUser: React.FC<IUser> = (props) => {
                 <h1 style={{ color: "Gold" }}>
                   {100 - cheater_percentage}% Legit
                 </h1>
-              ) : cheater_percentage < 40 && cheater_percentage > 10 ? (
+              ) : cheater_percentage < 40 && cheater_percentage >= 10 ? (
                 <h1 style={{ color: "Green" }}>
-                  {100 - cheater_percentage}% Legit
+                  {100 - cheater_percentage}% Not Cheater
                 </h1>
-              ) : cheater_percentage > 40 && cheater_percentage < 70 ? (
-                <h1 style={{ color: "orange" }}>
+              ) : cheater_percentage >= 40 && cheater_percentage < 70 ? (
+                <h1 style={{ color: "#ff4700" }}>
                   {cheater_percentage}% Suspicius
                 </h1>
               ) : (
                 <h1 style={{ color: "Red" }}>{cheater_percentage}% Cheater</h1>
               )}
+
+              <span>Report</span>
             </div>
           </>
         </Card>
@@ -109,12 +107,8 @@ const SteamUser: React.FC<IUser> = (props) => {
       {friends && (
         <>
           <StatsItem
-            info={[
-              {
-                title: "Friends",
-                value: friends.length,
-              },
-            ]}
+            title={"Friends"}
+            value={friends.length}
             cssStyles={{ justifySelf: "start", gap: "1rem", display: "flex" }}
           />
           <Card
