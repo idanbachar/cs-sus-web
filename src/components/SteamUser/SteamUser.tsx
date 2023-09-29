@@ -2,14 +2,13 @@ import { IUser } from "../../interfaces/IUser";
 import Card from "../Card/Card";
 import Stats from "../Stats/Stats";
 import SteamFriends from "../SteamFriends/SteamFriends";
-import SteamGames from "../SteamGames/SteamGames";
 import StatsItem from "../Stats/StatsItem/StatsItem";
 import SteamUserPreview from "./SteamUserPreview/SteamUserPreview";
 import styles from "./steam-user.module.css";
 import moment from "moment";
 import Inventory from "../Inventory/Inventory";
-import SteamGame from "../SteamGames/SteamGame/SteamGame";
 import CounterStrikeGame from "../SteamGames/CounterStrike/CounterStrikeGame";
+import Score from "../Score/Score";
 
 const SteamUser: React.FC<IUser> = (props) => {
   const {
@@ -82,25 +81,7 @@ const SteamUser: React.FC<IUser> = (props) => {
                 cheater_percentage={cheater_percentage}
               />
             )}
-            <div>
-              {cheater_percentage < 10 ? (
-                <h1 style={{ color: "Gold" }}>
-                  {100 - cheater_percentage}% Legit
-                </h1>
-              ) : cheater_percentage < 40 && cheater_percentage >= 10 ? (
-                <h1 style={{ color: "Green" }}>
-                  {100 - cheater_percentage}% Not Cheater
-                </h1>
-              ) : cheater_percentage >= 40 && cheater_percentage < 70 ? (
-                <h1 style={{ color: "#ff4700" }}>
-                  {cheater_percentage}% Suspicius
-                </h1>
-              ) : (
-                <h1 style={{ color: "Red" }}>{cheater_percentage}% Cheater</h1>
-              )}
-
-              <span>Report</span>
-            </div>
+            <Score cheater_percentage={cheater_percentage} steamid={steamid} />
           </>
         </Card>
       </>

@@ -1,3 +1,4 @@
+import { ILoggedInUser } from "../interfaces/IUser";
 import { setUser } from "../redux/slices/userSlice";
 import { store } from "../redux/store";
 import { GetCookie, deleteCookie, setCookie } from "./cookiesService";
@@ -24,7 +25,12 @@ export const GetLoggedInParamsFromUrl = (queryParameters: URLSearchParams) => {
     setCookie("id", id, 1);
     setCookie("avatar", avatar, 1);
     setCookie("profileurl", profileurl, 1);
-    return { username, id, avatar };
+    return {
+      username,
+      id,
+      avatar,
+      profileurl,
+    };
   }
   return null;
 };

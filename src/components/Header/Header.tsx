@@ -3,7 +3,6 @@ import steamLogo from "../../assets/images/steam_logo.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import LoggedInUser from "../LoggedInUser/LoggedInUser";
-
 import { Logout } from "../../services/loginService";
 
 const Header: React.FC = () => {

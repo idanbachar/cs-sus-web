@@ -3,12 +3,14 @@ import SearchUser from "./components/SearchUser/SearchUser";
 import { useEffect, useState } from "react";
 import { IUser } from "./interfaces/IUser";
 import SteamUser from "./components/SteamUser/SteamUser";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { GetUser } from "./services/steamService";
-import { db } from "./firebase/config";
-import { collection, getDocs } from "firebase/firestore/lite";
 import Header from "./components/Header/Header";
-import axios from "axios";
 import {
   CheckIsLoggedIn,
   GetLoggedInParamsFromUrl,
@@ -16,6 +18,7 @@ import {
 } from "./services/loginService";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
+import { CreateUser, IsUserExists } from "./services/firebaseService";
 
 const App = () => {
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
@@ -25,15 +28,6 @@ const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  // (async () => {
-  //   const usersCollection = collection(db, "users");
-  //   const usersSnapshot = await getDocs(usersCollection);
-  //   const usersList = usersSnapshot.docs.map((doc) => doc.data());
-  //   console.log("usersList", usersList);
-
-  //   return usersList;
-  // })();
 
   useEffect(() => {
     if (steamUrlParam) {
@@ -45,29 +39,43 @@ const App = () => {
   }, [location]);
 
   useEffect(() => {
-    const isLoggedIn = CheckIsLoggedIn();
-    if (!isLoggedIn) {
-      if (location.pathname === "/login-succeed") {
-        const loggedInUserData = GetLoggedInParamsFromUrl(queryParameters);
+    (async () => {
+      const isLoggedIn = CheckIsLoggedIn();
+      if (!isLoggedIn) {
+        if (location.pathname === "/login-succeed") {
+          const loggedInUserData = GetLoggedInParamsFromUrl(queryParameters);
+          if (loggedInUserData) {
+            const isUserExists = await IsUserExists(loggedInUserData.id);
+            if (!isUserExists) {
+              await CreateUser({ ...loggedInUserData, trackingList: [] });
+            }
+            navigate(`/`, {
+              replace: true,
+            });
+          } else {
+            navigate(`/`, {
+              replace: true,
+            });
+          }
+        }
+      } else {
+        const loggedInUserData = GetLoggedInUserDataFromCookies();
         if (loggedInUserData) {
-          navigate(`/`);
+          dispatch(setUser(loggedInUserData));
         }
       }
-    } else {
-      const loggedInUserData = GetLoggedInUserDataFromCookies();
-      if (loggedInUserData) {
-        dispatch(setUser(loggedInUserData));
-      }
-    }
+    })();
   }, [location]);
 
   return (
     <div className="App">
       <Header />
       <section className="SearchArea">
-        <h1>
-          CS:<span style={{ color: "darkred" }}>SUS</span>
-        </h1>
+        <Link to={"/"}>
+          <h1 className="title">
+            CS:<span style={{ color: "darkred" }}>SUS</span>
+          </h1>
+        </Link>
         <SearchUser
           placeholder={"Who is sus?"}
           onSearch={(userData) => {

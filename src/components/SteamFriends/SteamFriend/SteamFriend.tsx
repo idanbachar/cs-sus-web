@@ -23,6 +23,7 @@ const SteamFriend: React.FC<ISteamPlayer> = (props) => {
       onClick={() => {
         navigate(`?steamUrl=${profileurl}`);
       }}
+      className={styles.container}
     >
       <SteamUserAvatar
         avatars={{ avatar, avatarfull, avatarmedium }}

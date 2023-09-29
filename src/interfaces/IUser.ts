@@ -47,4 +47,5 @@ export interface ILoggedInUser {
   id: string;
   avatar: string;
   profileurl: string;
+  trackingList?: string[];
 }

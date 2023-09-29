@@ -19,9 +19,8 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
           className="mySwiper"
           modules={[Navigation]}
           initialSlide={0}
-          spaceBetween={20}
           navigation={true}
-          slidesPerView={2}
+          slidesPerView={3}
         >
           {friends.map((friend, index) => (
             <SwiperSlide key={index}>
@@ -29,8 +28,6 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
                 cssStyles={{
                   background: `#0a0b0f`,
                   paddingTop: "1rem",
-                  boxSizing: "border-box",
-                  height: "13rem",
                 }}
               >
                 <SteamFriend {...friend} />

@@ -1,3 +1,7 @@
+.container {
+  cursor: pointer;
+}
+
 .personaname {
   color: white;
   font-size: 1.5rem;
