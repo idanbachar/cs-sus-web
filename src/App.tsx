@@ -1,89 +1,42 @@
-import "./App.css";
-import SearchUser from "./components/SearchUser/SearchUser";
-import { useEffect, useState } from "react";
-import { IUser } from "./interfaces/IUser";
-import SteamUser from "./components/SteamUser/SteamUser";
-import {
-  Link,
-  useLocation,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
-import { GetUser } from "./services/steamService";
+import React, { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "./components/Header/Header";
 import {
   CheckIsLoggedIn,
-  GetLoggedInParamsFromUrl,
   GetLoggedInUserDataFromCookies,
 } from "./services/loginService";
 import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
-import { CreateUser, IsUserExists } from "./services/firebaseService";
+import "./App.css";
+import Footer from "./components/Footer/Footer";
 
-const App = () => {
-  const [steamUser, setSteamUser] = useState<IUser | null>(null);
-  const [queryParameters] = useSearchParams();
-  const steamUrlParam = queryParameters.get("steamUrl");
-
-  const location = useLocation();
+const App: React.FC<{ children: React.ReactNode }> = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const locatiuon = useLocation();
+
+  const navigateToHomePage = () => {
+    navigate(`/search`, {
+      replace: true,
+    });
+  };
 
   useEffect(() => {
-    if (steamUrlParam) {
-      (async () => {
-        const steamUserData = await GetUser(steamUrlParam);
-        setSteamUser(steamUserData);
-      })();
-    }
-  }, [location]);
-
-  useEffect(() => {
-    (async () => {
-      const isLoggedIn = CheckIsLoggedIn();
-      if (!isLoggedIn) {
-        if (location.pathname === "/login-succeed") {
-          const loggedInUserData = GetLoggedInParamsFromUrl(queryParameters);
-          if (loggedInUserData) {
-            const isUserExists = await IsUserExists(loggedInUserData.id);
-            if (!isUserExists) {
-              await CreateUser({ ...loggedInUserData, trackingList: [] });
-            }
-            navigate(`/`, {
-              replace: true,
-            });
-          } else {
-            navigate(`/`, {
-              replace: true,
-            });
-          }
-        }
-      } else {
-        const loggedInUserData = GetLoggedInUserDataFromCookies();
-        if (loggedInUserData) {
-          dispatch(setUser(loggedInUserData));
-        }
+    const isLoggedIn = CheckIsLoggedIn();
+    if (isLoggedIn) {
+      const loggedInUserData = GetLoggedInUserDataFromCookies();
+      if (loggedInUserData) {
+        dispatch(setUser(loggedInUserData));
+        if (locatiuon.pathname === "/login-succeed") navigateToHomePage();
       }
-    })();
-  }, [location]);
+    }
+  }, []);
 
   return (
     <div className="App">
       <Header />
-      <section className="SearchArea">
-        <Link to={"/"}>
-          <h1 className="title">
-            CS:<span style={{ color: "darkred" }}>SUS</span>
-          </h1>
-        </Link>
-        <SearchUser
-          placeholder={"Who is sus?"}
-          onSearch={(userData) => {
-            setSteamUser(userData);
-          }}
-        />
-      </section>
-      {steamUser && <SteamUser {...steamUser} />}
+      {props.children}
+      <Footer />
     </div>
   );
 };

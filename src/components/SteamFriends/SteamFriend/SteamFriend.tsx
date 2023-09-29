@@ -21,7 +21,7 @@ const SteamFriend: React.FC<ISteamPlayer> = (props) => {
   return (
     <div
       onClick={() => {
-        navigate(`?steamUrl=${profileurl}`);
+        navigate(`/search?steamUrl=${profileurl}`);
       }}
       className={styles.container}
     >

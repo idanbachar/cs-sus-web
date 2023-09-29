@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import styles from "./search-user.module.css";
+import styles from "./search.module.css";
 import { BsSearch } from "react-icons/bs";
-import { ISearchUser } from "../../interfaces/ISearchUser";
+import { ISearch } from "../../interfaces/ISearch";
 import { GetUser } from "../../services/steamService";
 import { useNavigate, useSearchParams, useLocation } from "react-router-dom";
 
-const SearchUser: React.FC<ISearchUser> = (props) => {
-  const { placeholder, onSearch } = props;
+const Search: React.FC<ISearch> = (props) => {
+  const { placeholder } = props;
   const inputRef = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const navigate = useNavigate();
@@ -36,12 +36,8 @@ const SearchUser: React.FC<ISearchUser> = (props) => {
         />
         <BsSearch
           color="black"
-          onClick={async () => {
-            if (inputValue && inputValue !== steamUrlParam) {
-              navigate(`?steamUrl=${inputValue}`);
-              const userData = await GetUser(inputValue);
-              onSearch(userData);
-            }
+          onClick={() => {
+            navigate(`/search?steamUrl=${inputValue}`);
           }}
           style={{ cursor: "pointer" }}
         />
@@ -50,4 +46,4 @@ const SearchUser: React.FC<ISearchUser> = (props) => {
   );
 };
 
-export default SearchUser;
+export default Search;

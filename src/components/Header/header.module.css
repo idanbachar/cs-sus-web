@@ -1,7 +1,6 @@
 .signIn {
   background-color: rgb(52, 176, 81);
   border-radius: 0.2rem;
-  height: 3rem;
   min-width: 10rem;
   color: white;
   font-size: 1rem;
@@ -14,5 +13,31 @@
   gap: 1rem;
   align-items: center;
   text-decoration: none;
+  cursor: pointer;
+}
+
+.searchArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  color: white;
+  background-color: #0b0b0b;
+  width: 100%;
+  display: flex;
+  padding-bottom: 2rem;
+  min-height: 15vh;
+}
+
+.searchedUserArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  padding-top: 5rem;
+}
+
+.title {
   cursor: pointer;
 }
