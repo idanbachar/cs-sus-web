@@ -9,7 +9,6 @@ import styles from "./steam-user.module.css";
 import moment from "moment";
 import Inventory from "../Inventory/Inventory";
 import SteamGame from "../SteamGames/SteamGame/SteamGame";
-import CounterStrikeStats from "../Stats/CounterStrikeStats/CounterStrikeStats";
 import CounterStrikeGame from "../SteamGames/CounterStrike/CounterStrikeGame";
 
 const SteamUser: React.FC<IUser> = (props) => {
@@ -81,11 +80,13 @@ const SteamUser: React.FC<IUser> = (props) => {
             }}
           >
             <CounterStrikeGame {...cs2} />
-            {/* <CounterStrikeStats {...{ csgoStats, steamLevel, vacBans }} /> */}
+            <div>
+              <h1 style={{ color: "white" }}>100% Cheater</h1>
+            </div>
           </Card>
         </>
       )}
-      {friends && (
+      {/* {friends && (
         <>
           <StatsItem
             info={[
@@ -105,7 +106,7 @@ const SteamUser: React.FC<IUser> = (props) => {
             <SteamFriends friends={friends} />
           </Card>
         </>
-      )}
+      )} */}
     </div>
   );
 };

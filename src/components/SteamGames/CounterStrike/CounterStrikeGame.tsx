@@ -35,6 +35,15 @@ const CounterStrikeGame: React.FC<ICS2> = (props) => {
             },
           ]}
         />
+        <StatsItem
+          info={[
+            {
+              title: "HS prec",
+              value: stats !== null ? stats.headshot_precentage : -1,
+            },
+          ]}
+          textAfterValue="%"
+        />
       </div>
     </div>
   );
