@@ -27,6 +27,7 @@ export interface IUser {
   steamLevel: number;
   csgoStats: ISteamStatsDictionary | null;
   total_games: number;
+  cheater_percentage: number;
 }
 
 export interface ISteamUserAvatar {

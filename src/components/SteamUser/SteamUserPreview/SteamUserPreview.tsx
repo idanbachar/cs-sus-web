@@ -19,7 +19,6 @@ const SteamUserPreview: React.FC<ISteamPlayer | IUser> = (props) => {
       <SteamUserAvatar
         avatars={{ avatar, avatarfull, avatarmedium }}
         size={"avatarfull"}
-        borderColor="green"
       />
       <div className={styles.name}>
         <span>

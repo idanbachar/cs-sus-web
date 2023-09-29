@@ -23,6 +23,7 @@ const SteamUser: React.FC<IUser> = (props) => {
     total_games,
     totalBadges,
     cs2,
+    cheater_percentage,
   } = props;
 
   const years_of_service =
@@ -70,23 +71,42 @@ const SteamUser: React.FC<IUser> = (props) => {
           </Card>
         </>
       )}
-      {games && cs2 && (
-        <>
-          <Card
-            cssStyles={{
-              width: "100%",
-              maxWidth: "70rem",
-              justifyContent: "space-evenly",
-            }}
-          >
-            <CounterStrikeGame {...cs2} />
+      <>
+        <Card
+          cssStyles={{
+            width: "100%",
+            maxWidth: "70rem",
+            justifyContent: "space-evenly",
+          }}
+        >
+          <>
+            {cs2 && (
+              <CounterStrikeGame
+                {...cs2}
+                cheater_percentage={cheater_percentage}
+              />
+            )}
             <div>
-              <h1 style={{ color: "white" }}>100% Cheater</h1>
+              {cheater_percentage < 10 ? (
+                <h1 style={{ color: "Gold" }}>
+                  {100 - cheater_percentage}% Legit
+                </h1>
+              ) : cheater_percentage < 40 && cheater_percentage > 10 ? (
+                <h1 style={{ color: "Green" }}>
+                  {100 - cheater_percentage}% Legit
+                </h1>
+              ) : cheater_percentage > 40 && cheater_percentage < 70 ? (
+                <h1 style={{ color: "orange" }}>
+                  {cheater_percentage}% Suspicius
+                </h1>
+              ) : (
+                <h1 style={{ color: "Red" }}>{cheater_percentage}% Cheater</h1>
+              )}
             </div>
-          </Card>
-        </>
-      )}
-      {/* {friends && (
+          </>
+        </Card>
+      </>
+      {friends && (
         <>
           <StatsItem
             info={[
@@ -106,7 +126,7 @@ const SteamUser: React.FC<IUser> = (props) => {
             <SteamFriends friends={friends} />
           </Card>
         </>
-      )} */}
+      )}
     </div>
   );
 };
