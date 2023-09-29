@@ -20,7 +20,10 @@ const LoggedInUser: React.FC<ILoggedInUser & { onLogout: () => void }> = (
         <span>{username}</span>
         <ul className={styles.settings}>
           {links.map((link, key) => (
-            <li onClick={() => !link.route && link.function && link.function()}>
+            <li
+              key={key}
+              onClick={() => !link.route && link.function && link.function()}
+            >
               {link.route ? (
                 <Link to={link.route}>{link.text}</Link>
               ) : (
