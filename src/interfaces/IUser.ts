@@ -1,5 +1,6 @@
 import { IInventory, IInventoryItem } from "./IInventory";
 import {
+  ICS2,
   ISteamGame,
   ISteamPlayer,
   ISteamPlayerBans,
@@ -20,7 +21,7 @@ export interface IUser {
   friends: ISteamPlayer[] | null;
   vacBans: ISteamPlayerBans | null;
   games: ISteamGame[] | null;
-  cs2: ISteamGame | null;
+  cs2: ICS2 | null;
   inventory: IInventoryItem[] | null;
   totalBadges: number;
   steamLevel: number;

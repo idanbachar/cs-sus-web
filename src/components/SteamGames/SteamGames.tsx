@@ -33,7 +33,7 @@ const SteamGames: React.FC<ISteamGames> = (props) => {
                   boxSizing: "border-box",
                 }}
               >
-                <SteamGame {...game} />
+                {/* <SteamGame {...game} /> */}
               </Card>
             </SwiperSlide>
           ))}

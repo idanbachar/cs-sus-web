@@ -51,6 +51,19 @@ export interface ISteamGame {
   playtime_disconnected: number;
 }
 
+export interface ICS2 {
+  appid: number;
+  name: string;
+  playtime_forever: number;
+  img_icon_url: string;
+  stats: {
+    total_wins: number;
+    total_kills_headshot: number;
+    headshot_precentage: number;
+    total_kills: number;
+  } | null;
+}
+
 export interface ISteamGames {
   games: ISteamGame[];
 }

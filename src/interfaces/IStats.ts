@@ -11,6 +11,7 @@ export interface IStats {
   timecreated: number | null;
   vacBans: ISteamPlayerBans | null;
   steamLevel: number | null;
+  totalBadges: number | null;
 }
 
 export interface ICounterStrikeStats {
