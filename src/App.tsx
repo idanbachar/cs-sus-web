@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "./redux/slices/userSlice";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
+import { GetUserData } from "./services/firebaseService";
 
 const App: React.FC<{ children: React.ReactNode }> = (props) => {
   const navigate = useNavigate();
@@ -26,8 +27,16 @@ const App: React.FC<{ children: React.ReactNode }> = (props) => {
     if (isLoggedIn) {
       const loggedInUserData = GetLoggedInUserDataFromCookies();
       if (loggedInUserData) {
-        dispatch(setUser(loggedInUserData));
-        if (locatiuon.pathname === "/login-succeed") navigateToHomePage();
+        (async () => {
+          const userDataFirebase = await GetUserData(loggedInUserData.id);
+          dispatch(
+            setUser({
+              ...loggedInUserData,
+              trackingList: userDataFirebase?.trackingList,
+            })
+          );
+          if (locatiuon.pathname === "/login-succeed") navigateToHomePage();
+        })();
       }
     }
   }, []);

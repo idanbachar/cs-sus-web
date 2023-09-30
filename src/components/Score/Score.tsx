@@ -4,7 +4,13 @@ import styles from "./score.module.css";
 import { RootState } from "../../redux/store";
 
 const Score: React.FC<IScore> = (props) => {
-  const { cheater_percentage, steamid } = props;
+  const {
+    cheater_percentage,
+    steamid,
+    profileurl,
+    onTrackingClick,
+    isTracking,
+  } = props;
   const loggedInUser = useSelector(
     (state: RootState) => state.loggedInUser.user
   );
@@ -23,7 +29,12 @@ const Score: React.FC<IScore> = (props) => {
       )}
       {loggedInUser ? (
         loggedInUser.id !== steamid ? (
-          <button className={styles.report}>Add to my suspects</button>
+          <button
+            className={styles.report}
+            onClick={() => onTrackingClick(steamid, profileurl, isTracking)}
+          >
+            {!isTracking ? "Add to my tracking" : "Stop tracking"}
+          </button>
         ) : null
       ) : (
         <span style={{ color: "white" }}>Login to track</span>

@@ -42,10 +42,15 @@ export interface ISteamUserAvatar {
   cssStyles?: React.CSSProperties;
 }
 
+export interface ITrackingListItem {
+  id: string;
+  profileurl: string;
+}
+
 export interface ILoggedInUser {
   username: string;
   id: string;
   avatar: string;
   profileurl: string;
-  trackingList?: string[];
+  trackingList?: ITrackingListItem[];
 }

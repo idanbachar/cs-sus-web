@@ -9,7 +9,7 @@ const LoggedInUser: React.FC<ILoggedInUser & { onLogout: () => void }> = (
 
   const links = [
     { text: "Profile", route: `/search?steamUrl=${profileurl}` },
-    { text: "My tracklist", route: "/mytracklist" },
+    { text: "My tracking", route: "/myTrackingList" },
     { text: "Logout", route: "", function: onLogout },
   ];
 
