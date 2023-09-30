@@ -14,7 +14,7 @@ const Header: React.FC = () => {
   return (
     <header className={styles.searchArea}>
       <h1 className={styles.title}>
-        <Link to={"/search"}>
+        <Link to={"/"}>
           CS:<span style={{ color: "darkred" }}>SUS</span>
         </Link>
       </h1>

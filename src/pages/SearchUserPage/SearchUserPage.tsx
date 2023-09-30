@@ -13,11 +13,11 @@ const SearchUserPage: React.FC = () => {
   const location = useLocation();
 
   const [steamUser, setSteamUser] = useState<IUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
     if (steamUrlParam) {
+      setIsLoading(true);
       (async () => {
         const steamUserData = await GetUser(steamUrlParam);
         setSteamUser(steamUserData);
@@ -29,13 +29,7 @@ const SearchUserPage: React.FC = () => {
   return (
     <>
       <Search placeholder={"Who is sus?"} />
-      {isLoading ? (
-        <Loader />
-      ) : steamUser ? (
-        <SteamUser {...steamUser} />
-      ) : (
-        <Loader />
-      )}
+      {isLoading ? <Loader /> : steamUser ? <SteamUser {...steamUser} /> : null}
     </>
   );
 };

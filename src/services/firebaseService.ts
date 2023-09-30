@@ -40,7 +40,6 @@ export const GetUserData = async (steamId: string) => {
     const userDocRef = doc(db, "users", steamId);
     const userSnapshot = await getDoc(userDocRef);
     if (userSnapshot.exists()) {
-      console.log("User data:", userSnapshot.data());
       return userSnapshot.data() as ILoggedInUser;
     } else {
       return null;

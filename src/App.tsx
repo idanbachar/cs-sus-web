@@ -17,7 +17,7 @@ const App: React.FC<{ children: React.ReactNode }> = (props) => {
   const locatiuon = useLocation();
 
   const navigateToHomePage = () => {
-    navigate(`/search`, {
+    navigate(`/`, {
       replace: true,
     });
   };

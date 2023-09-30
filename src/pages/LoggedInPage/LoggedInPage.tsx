@@ -16,7 +16,7 @@ const LoggedInPage: React.FC = () => {
   const location = useLocation();
 
   const navigateToHomePage = () => {
-    navigate(`/search`, {
+    navigate(`/`, {
       replace: true,
     });
   };

@@ -5,11 +5,14 @@ import styles from "./logged-in-user.module.css";
 const LoggedInUser: React.FC<ILoggedInUser & { onLogout: () => void }> = (
   props
 ) => {
-  const { username, avatar, profileurl, onLogout } = props;
+  const { username, avatar, profileurl, onLogout, trackingList } = props;
 
   const links = [
     { text: "Profile", route: `/search?steamUrl=${profileurl}` },
-    { text: "My tracking", route: "/myTrackingList" },
+    {
+      text: `Tracking list (${trackingList ? trackingList.length : 0})`,
+      route: "/myTrackingList",
+    },
     { text: "Logout", route: "", function: onLogout },
   ];
 
