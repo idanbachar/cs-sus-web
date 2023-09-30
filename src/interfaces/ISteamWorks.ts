@@ -15,6 +15,7 @@ export interface ISteamPlayer {
   country_image: string;
   totalBadges: number;
   steamLevel: number;
+  vacBans: ISteamPlayerBans;
 }
 
 export interface ISteamFriend {

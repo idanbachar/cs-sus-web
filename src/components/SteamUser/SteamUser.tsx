@@ -11,7 +11,7 @@ import CounterStrikeGame from "../SteamGames/CounterStrike/CounterStrikeGame";
 import Score from "../Score/Score";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
-import { AddUserToTrackingList } from "../../services/firebaseService";
+import { UpdateUserTrackingList } from "../../services/firebaseService";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../redux/slices/userSlice";
@@ -137,7 +137,7 @@ const SteamUser: React.FC<IUser> = (props) => {
                         (trackItem) => trackItem.id !== steamid
                       );
                     }
-                    await AddUserToTrackingList(
+                    await UpdateUserTrackingList(
                       loggedInUser.id,
                       updatedTrackingList
                     );

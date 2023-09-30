@@ -17,7 +17,7 @@ export const IsUserExists = async (steamId: string) => {
   return userSnap.exists();
 };
 
-export const AddUserToTrackingList = async (
+export const UpdateUserTrackingList = async (
   steamId: string,
   updatedTrackingList: ITrackingListItem[]
 ) => {

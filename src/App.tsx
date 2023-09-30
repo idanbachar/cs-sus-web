@@ -14,7 +14,7 @@ import { GetUserData } from "./services/firebaseService";
 const App: React.FC<{ children: React.ReactNode }> = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const locatiuon = useLocation();
+  const location = useLocation();
 
   const navigateToHomePage = () => {
     navigate(`/`, {
@@ -35,8 +35,12 @@ const App: React.FC<{ children: React.ReactNode }> = (props) => {
               trackingList: userDataFirebase?.trackingList,
             })
           );
-          if (locatiuon.pathname === "/login-succeed") navigateToHomePage();
+          if (location.pathname === "/login-succeed") navigateToHomePage();
         })();
+      }
+    } else {
+      if (location.pathname === "/myTrackingList") {
+        navigateToHomePage();
       }
     }
   }, []);
