@@ -1,46 +1,44 @@
-# Getting Started with Create React App
+# CS:SUS (Counter-Strike: Suspect Searcher)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Strike: Global Offensive. This tool provides detailed analytics of a player's performance and metrics to gauge the likelihood of cheating. Integrated with Steam's authentication, users can not only fetch data about any player but also track suspect profiles and get notifications about their VAC ban status.
 
-## Available Scripts
+## Features:
 
-In the project directory, you can run:
+1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS:GO statistics.
+2. **Cheater Probability Score**: Based on various metrics and analytics, get a percentage score indicating the likelihood of a profile being a cheater.
+3. **Steam Login Integration**: Securely log in using your Steam account.
+4. **Tracking List**: Add profiles to your tracking list and keep an eye on them.
+5. **Email Notifications (SOON)**: Get notified when a player from your tracking list receives a VAC ban.
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React
+- Steam API
+- Node.js (for the backend)
+- Firebase (for tracking)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## License
 
-### `npm test`
+This project is licensed under the MIT License. See the [LICENSE.md](link-to-your-license-md-file) for details.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Frequently Asked Questions (FAQ)
 
-### `npm run build`
+### How is the Cheater Probability Score calculated?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The Cheater Probability Score is based on a combination of metrics from the player's CS:GO statistics, anomalies in the player's CS:GO total playtime, steam level, total badges, total friends, account age, inventory items price, some statistics like headshot percentage, total kills and various other data points fetched from the Steam API. While the score provides an indication, it's essential to understand that it's a heuristic, and there might be false positives.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### What happens if I forget my Steam login for this application?
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Don't worry! We don't store your Steam credentials. The login mechanism is handled through Steam's OAuth2.0, ensuring that your data remains secure. If you're logged out, you can always log in again using the 'Login with Steam' button.
 
-### `npm run eject`
+### How often are the email notifications sent?
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Work in progress.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### How do I remove a player from my tracking list?
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Once logged in, navigate to your tracking list. Next to each player's name, there's a 'Stop tracking' button. Clicking on it will immediately remove the player from your list and stop further notifications about that player.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Acknowledgments
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Special thanks to the developers of the Steam API for making this project possible.
