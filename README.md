@@ -2,9 +2,6 @@
 
 CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Strike: Global Offensive. This tool provides detailed analytics of a player's performance and metrics to gauge the likelihood of cheating. Integrated with Steam's authentication, users can not only fetch data about any player but also track suspect profiles and get notifications about their VAC ban status.
 
-![Alt text](image.png)
-![Alt text](image-1.png)
-![Alt text](image-2.png)
 ## Features:
 
 1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS:GO statistics.
@@ -12,6 +9,10 @@ CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Stri
 3. **Steam Login Integration**: Securely log in using your Steam account.
 4. **Tracking List**: Add profiles to your tracking list and keep an eye on them.
 5. **Email Notifications (SOON)**: Get notified when a player from your tracking list receives a VAC ban.
+
+![Alt text](image.png)
+![Alt text](image-1.png)
+![Alt text](image-2.png)
 
 ## Technologies Used
 
