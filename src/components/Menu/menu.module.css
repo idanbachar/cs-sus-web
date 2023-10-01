@@ -1,0 +1,19 @@
+.menuItems {
+  display: flex;
+  list-style-type: none;
+  gap: 1rem;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.menuItem :hover {
+  text-decoration: underline;
+}
+
+@media screen and (max-width: 725px) {
+  .menuItems {
+    flex-direction: column;
+    align-items: start;
+  }
+}

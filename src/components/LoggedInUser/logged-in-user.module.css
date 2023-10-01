@@ -1,5 +1,4 @@
 .container {
-  position: fixed;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -7,37 +6,14 @@
   z-index: 10;
 }
 
-.settings {
-  position: absolute;
-  display: flex;
-  color: white;
-  flex-direction: column;
-  align-items: center;
-  left: 0;
-  z-index: 100;
-  bottom: -8.3rem;
-  list-style-type: none;
-  background-color: rgb(38, 12, 124);
-  padding-inline-start: 0;
-  width: 100%;
-  gap: 1.2rem;
-  box-sizing: border-box;
-  display: none;
-}
-
-.settings li:hover {
-  text-decoration: underline;
-}
-
 .loggedInUser {
-  background-color: rgb(86, 46, 219);
+  background-color: darkred;
   border-radius: 0.2rem;
   height: 3rem;
   color: white;
   font-size: 1.2rem;
   box-sizing: border-box;
   padding: 1rem;
-  position: absolute;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -48,10 +24,16 @@
   z-index: 10;
 }
 
-.loggedInUser:hover .settings {
-  display: flex;
-}
-
 .avatar {
   border-radius: 50%;
+}
+
+.logout {
+  background-color: #360e0e;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 0;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
 }

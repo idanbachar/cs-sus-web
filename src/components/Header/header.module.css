@@ -2,11 +2,11 @@
   background-color: rgb(52, 176, 81);
   border-radius: 0.2rem;
   min-width: 10rem;
+  height: 3rem;
   color: white;
   font-size: 1rem;
   box-sizing: border-box;
   padding: 1rem;
-  position: absolute;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -18,14 +18,22 @@
 
 .header {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   color: white;
   background-color: #0b0b0b;
   width: 100%;
   display: flex;
-  min-height: 15vh;
+}
+
+.container {
+  display: flex;
+  max-width: 70rem;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
 }
 
 .searchedUserArea {
@@ -39,4 +47,15 @@
 
 .title {
   cursor: pointer;
+}
+
+@media screen and (max-width: 725px) {
+  .header {
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+  .container {
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
 }
