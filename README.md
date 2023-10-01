@@ -10,9 +10,10 @@ CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Stri
 4. **Tracking List**: Add profiles to your tracking list and keep an eye on them.
 5. **Email Notifications (SOON)**: Get notified when a player from your tracking list receives a VAC ban.
 
-![Alt text](image.png)
-![Alt text](image-1.png)
-![Alt text](image-2.png)
+![Alt text](./src/assets/images/home.png)
+![Alt text](./src/assets/images/legit.png.png)
+![Alt text](./src/assets/images/sus.png.png)
+![Alt text](./src/assets/images/tracking.png.png)
 
 ## Technologies Used
 
