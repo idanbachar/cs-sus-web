@@ -23,6 +23,7 @@ const TrackingListPage: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (
+        trackingUsers.length === 0 &&
         loggedInUser &&
         loggedInUser.trackingList &&
         loggedInUser.trackingList.length > 0
