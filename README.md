@@ -4,6 +4,7 @@ CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Stri
 
 ![Alt text](image.png)
 ![Alt text](image-1.png)
+![Alt text](image-2.png)
 ## Features:
 
 1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS:GO statistics.
