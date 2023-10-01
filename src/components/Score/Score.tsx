@@ -10,6 +10,7 @@ const Score: React.FC<IScore> = (props) => {
     profileurl,
     onTrackingClick,
     isTracking,
+    vacBans,
   } = props;
   const loggedInUser = useSelector(
     (state: RootState) => state.loggedInUser.user
@@ -27,18 +28,20 @@ const Score: React.FC<IScore> = (props) => {
       ) : (
         <h1 style={{ color: "Red" }}>{cheater_percentage}% Cheater</h1>
       )}
-      {loggedInUser ? (
-        loggedInUser.id !== steamid ? (
-          <button
-            className={styles.report}
-            onClick={() => onTrackingClick(steamid, profileurl, isTracking)}
-          >
-            {!isTracking ? "Add to my tracking" : "Stop tracking"}
-          </button>
-        ) : null
-      ) : (
-        <span style={{ color: "white" }}>Login to track</span>
-      )}
+      {vacBans &&
+        !vacBans.VACBanned &&
+        (loggedInUser ? (
+          loggedInUser.id !== steamid ? (
+            <button
+              className={styles.report}
+              onClick={() => onTrackingClick(steamid, profileurl, isTracking)}
+            >
+              {!isTracking ? "Add to tracking list" : "Stop tracking"}
+            </button>
+          ) : null
+        ) : (
+          <span style={{ color: "white" }}>Login to track</span>
+        ))}
     </div>
   );
 };

@@ -28,7 +28,7 @@ const SearchUserPage: React.FC = () => {
 
   return (
     <>
-      <Search placeholder={"Who is sus?"} />
+      <Search placeholder={"Enter steam profile url"} />
       {isLoading ? <Loader /> : steamUser ? <SteamUser {...steamUser} /> : null}
     </>
   );

@@ -1,10 +1,11 @@
 import Search from "../../components/Search/Search";
+import styles from "./homepage.module.css";
 
 const HomePage: React.FC = () => {
   return (
-    <>
-      <Search placeholder={"Who is sus?"} />
-    </>
+    <div className={styles.container}>
+      <Search placeholder={"Enter steam profile url"} />
+    </div>
   );
 };
 

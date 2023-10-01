@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   );
 
   return (
-    <header className={styles.searchArea}>
+    <header className={styles.header}>
       <h1 className={styles.title}>
         <Link to={"/"}>
           CS:<span style={{ color: "darkred" }}>SUS</span>

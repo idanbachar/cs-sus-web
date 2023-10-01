@@ -24,19 +24,21 @@ const TrackingItem: React.FC<
       </div>
       <div>
         <span
+          className={styles.vacStatus}
           style={{
-            color: "white",
             border: vacBans.VACBanned ? `1px solid red` : "",
             backgroundColor: vacBans.VACBanned ? `darkred` : "",
-            borderRadius: ".2rem",
-            padding: "1rem",
-            boxSizing: "border-box",
           }}
         >
-          {vacBans.VACBanned ? "VAC" : "No VAC"}
+          {vacBans.VACBanned && "Vac Banned"}
         </span>
         <button
+          disabled={vacBans.VACBanned}
           className={styles.report}
+          style={{
+            cursor: !vacBans.VACBanned ? "pointer" : "default",
+            backgroundColor: !vacBans.VACBanned ? "" : "#581919b5",
+          }}
           onClick={() => onStopTracking(steamid)}
         >
           Stop tracking

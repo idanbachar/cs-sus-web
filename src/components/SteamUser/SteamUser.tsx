@@ -114,6 +114,7 @@ const SteamUser: React.FC<IUser> = (props) => {
               steamid={steamid}
               profileurl={profileurl}
               isTracking={isTracking}
+              vacBans={vacBans}
               onTrackingClick={(steamid, profileurl, isTracking) => {
                 (async () => {
                   if (loggedInUser) {

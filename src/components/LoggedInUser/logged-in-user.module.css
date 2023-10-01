@@ -15,7 +15,7 @@
   align-items: center;
   left: 0;
   z-index: 100;
-  bottom: -7.6rem;
+  bottom: -8.3rem;
   list-style-type: none;
   background-color: rgb(38, 12, 124);
   padding-inline-start: 0;
@@ -34,7 +34,7 @@
   border-radius: 0.2rem;
   height: 3rem;
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   box-sizing: border-box;
   padding: 1rem;
   position: absolute;

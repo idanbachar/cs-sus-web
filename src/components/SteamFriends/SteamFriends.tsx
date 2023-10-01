@@ -27,7 +27,7 @@ const SteamFriends: React.FC<ISteamFriends> = (props) => {
               <Card
                 cssStyles={{
                   background: `#0a0b0f`,
-                  paddingTop: "1rem",
+                  paddingTop: "2rem",
                 }}
               >
                 <SteamFriend {...friend} />

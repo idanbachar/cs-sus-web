@@ -13,6 +13,18 @@
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  font-size: 1.5rem;
+}
+
+.player:hover {
+  text-decoration: underline;
+}
+
+.vacStatus {
+  color: white;
+  border-radius: 0.2rem;
+  padding: 0.3rem;
+  box-sizing: border-box;
 }
 
 .report {
@@ -26,4 +38,9 @@
   cursor: pointer;
   border: none;
   margin: 1rem;
+}
+
+.report:hover {
+  background-color: rgb(123, 22, 22);
+  transition: 0.5s ease-in-out;
 }
