@@ -22,10 +22,6 @@ CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Stri
 - Node.js (for the backend)
 - Firebase (for tracking)
 
-## License
-
-This project is licensed under the MIT License. See the [LICENSE.md](link-to-your-license-md-file) for details.
-
 ## Frequently Asked Questions (FAQ)
 
 ### How is the Cheater Probability Score calculated?
