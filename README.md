@@ -1,10 +1,10 @@
 # CS:SUS (Counter-Strike: Suspect Searcher)
 
-CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Strike: Global Offensive. This tool provides detailed analytics of a player's performance and metrics to gauge the likelihood of cheating. Integrated with Steam's authentication, users can not only fetch data about any player but also track suspect profiles and get notifications about their VAC ban status.
+CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Strike 2. This tool provides detailed analytics of a player's performance and metrics to gauge the likelihood of cheating. Integrated with Steam's authentication, users can not only fetch data about any player but also track suspect profiles and get notifications about their VAC ban status.
 
 ## Features:
 
-1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS:GO statistics.
+1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS2 statistics.
 2. **Cheater Probability Score**: Based on various metrics and analytics, get a percentage score indicating the likelihood of a profile being a cheater.
 3. **Steam Login Integration**: Securely log in using your Steam account.
 4. **Tracking List**: Add profiles to your tracking list and keep an eye on them.
@@ -26,7 +26,7 @@ CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Stri
 
 ### How is the Cheater Probability Score calculated?
 
-The Cheater Probability Score is based on a combination of metrics from the player's CS:GO statistics, anomalies in the player's CS:GO total playtime, steam level, total badges, total friends, account age, inventory items price, some statistics like headshot percentage, total kills and various other data points fetched from the Steam API. While the score provides an indication, it's essential to understand that it's a heuristic, and there might be false positives.
+The Cheater Probability Score is based on a combination of metrics from the player's CS2 statistics, anomalies in the player's CS2 total playtime, steam level, total badges, total friends, account age, inventory items price, some statistics like headshot percentage, total kills and various other data points fetched from the Steam API. While the score provides an indication, it's essential to understand that it's a heuristic, and there might be false positives.
 
 ### What happens if I forget my Steam login for this application?
 
