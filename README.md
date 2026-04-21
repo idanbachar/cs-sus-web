@@ -10,7 +10,8 @@ Modern Next.js rebuild of CS-SUS using App Router, TypeScript, Steam API hydrati
 - NextAuth (Steam OpenID)
 - Zod validation
 - SWR data fetching
-- Supabase (optional) with automatic local fallback store
+- Browser localStorage for tracking persistence
+- Supabase (optional, API-level storage)
 
 ## Current features
 
@@ -18,10 +19,8 @@ Modern Next.js rebuild of CS-SUS using App Router, TypeScript, Steam API hydrati
 - Profile hydration from Steam API (single and batch)
 - Cheater score engine with reason codes
 - Login flow via Steam provider in NextAuth
-- Tracking list API and UI (add, remove, list)
-- Storage abstraction:
-	- Supabase store when configured
-	- Local file store fallback in `.data/tracking.json`
+- Tracking list UI persisted in browser localStorage (add, remove, list)
+- Optional server-side tracking API with Supabase storage when configured
 
 ## Screenshots
 
@@ -86,7 +85,8 @@ Notes:
 - `STEAM_API_KEY` is required for Steam data routes.
 - `STEAM_SECRET` (or `STEAM_API_KEY` fallback) is required for Steam auth provider.
 - If `NEXTAUTH_SECRET` is empty in local dev, a temporary insecure fallback secret is used.
-- Supabase is optional. If missing, tracking uses local file storage automatically.
+- Tracking UI data is stored per user in browser localStorage.
+- Supabase is optional and only needed for server-side tracking API persistence.
 
 ## Local development
 

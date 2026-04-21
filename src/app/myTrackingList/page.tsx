@@ -8,26 +8,16 @@ import { Header } from "@/components/layout/Header";
 import { SearchResults } from "@/components/search/SearchResults";
 import { TrackedUserAccordionItem } from "@/components/tracking/TrackedUserAccordionItem";
 import { SteamUsersResponse } from "@/lib/api/types";
-import { TrackingListResponse } from "@/lib/tracking/types";
+import { useLocalTrackingList } from "@/lib/tracking/browser-store";
 
 export default function TrackingListPage() {
   const { data: session, status } = useSession();
   const [expandedSteamId, setExpandedSteamId] = useState<string | null>(null);
-
-  const { data: trackingData, mutate: mutateTracking } = useSWR<TrackingListResponse>(
-    session?.user?.steamId
-      ? `/api/tracking/list?ownerSteamId=${session.user.steamId}`
-      : null,
-    async (url: string) => {
-      const res = await fetch(url, { cache: "no-store" });
-      if (!res.ok) throw new Error("Failed to load tracking list");
-      return (await res.json()) as TrackingListResponse;
-    }
-  );
+  const { trackingList, removeTarget } = useLocalTrackingList(session?.user?.steamId);
 
   const steamUrls = useMemo(
-    () => trackingData?.trackingList.map((item) => item.profileUrl) ?? [],
-    [trackingData?.trackingList]
+    () => trackingList.map((item) => item.profileUrl),
+    [trackingList]
   );
 
   const trackingUsersKey =
@@ -55,16 +45,8 @@ export default function TrackingListPage() {
     [usersData?.users]
   );
 
-  const onRemove = async (steamId: string) => {
-    const res = await fetch("/api/tracking/remove", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ targetSteamId: steamId }),
-    });
-
-    if (res.ok) {
-      await mutateTracking();
-    }
+  const onRemove = (steamId: string) => {
+    removeTarget(steamId);
   };
 
   return (
@@ -85,7 +67,7 @@ export default function TrackingListPage() {
             </p>
           ) : null}
 
-          {status === "authenticated" && !trackingData?.trackingList?.length ? (
+          {status === "authenticated" && !trackingList.length ? (
             <p style={{ color: "#a7b6ce", marginTop: "0.5rem", fontSize: "1.1rem" }}>
               No profiles tracked yet. Search a profile and click Track.
             </p>

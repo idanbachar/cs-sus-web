@@ -9,9 +9,10 @@ import { FriendsSidebar } from "@/components/search/FriendsSidebar";
 import { ProfileHeader } from "@/components/search/ProfileHeader";
 import { ScoreBreakdown } from "@/components/search/ScoreBreakdown";
 import { ScoreWeightLegend } from "@/components/search/ScoreWeightLegend";
-import { SteamUserResponse, TrackingListResponse } from "@/lib/api/types";
+import { SteamUserResponse } from "@/lib/api/types";
 import { CHEATER_SCORE_CONFIG } from "@/lib/scoring/cheater-score-config";
 import { getImprovementTips, getReasonBuckets } from "@/lib/scoring/score-reasons";
+import { useLocalTrackingList } from "@/lib/tracking/browser-store";
 import { IUserResult } from "@/lib/types/steam";
 
 interface SearchResultsProps {
@@ -28,26 +29,6 @@ const fetchProfile = async (url: string) => {
   }
 
   return payload;
-};
-
-const fetchTrackingList = async (url: string) => {
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) {
-    throw new Error("Failed to load tracking list");
-  }
-
-  return (await res.json()) as TrackingListResponse;
-};
-
-const postTrackingToggle = async (payload: { targetSteamId?: string; targetSteamUrl?: string }, tracked: boolean) => {
-  const endpoint = tracked ? "/api/tracking/remove" : "/api/tracking/add";
-  const res = await fetch(endpoint, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  return res.ok;
 };
 
 const formatNumber = (value: number | undefined) =>
@@ -96,15 +77,11 @@ const getStatTones = (data: IUserResult, accountAgeYears: number, friendsCount: 
 export function SearchResults({ steamUrl, invalid }: SearchResultsProps) {
   const router = useRouter();
   const { data: session } = useSession();
+  const { trackedIds, addTarget, removeTarget } = useLocalTrackingList(session?.user?.steamId);
 
   const query = !steamUrl || invalid ? null : `/api/steam/user?steamUrl=${encodeURIComponent(steamUrl)}`;
 
   const { data: response, error, isLoading } = useSWR<SteamUserResponse>(query, fetchProfile);
-
-  const { data: trackingResponse, mutate: mutateTracking } = useSWR<TrackingListResponse>(
-    session?.user?.steamId ? `/api/tracking/list?ownerSteamId=${session.user.steamId}` : null,
-    fetchTrackingList
-  );
 
   const data = response?.user ?? null;
   const errorMessage = error instanceof Error ? error.message : null;
@@ -125,7 +102,6 @@ export function SearchResults({ steamUrl, invalid }: SearchResultsProps) {
 
   const legitPercentage = Math.max(0, 100 - data.cheater_percentage);
   const scoreTone = getScoreTone(legitPercentage);
-  const trackedIds = new Set(trackingResponse?.trackingList.map((item) => item.steamId) ?? []);
   const isTracked = trackedIds.has(data.steamid);
 
   const canTrack =
@@ -136,28 +112,33 @@ export function SearchResults({ steamUrl, invalid }: SearchResultsProps) {
   const onTrackToggle = async () => {
     if (!canTrack) return;
 
-    const ok = await postTrackingToggle(
-      isTracked ? { targetSteamId: data.steamid } : { targetSteamUrl: data.profileurl },
-      isTracked
-    );
-
-    if (ok) {
-      await mutateTracking();
+    if (isTracked) {
+      removeTarget(data.steamid);
+      return;
     }
+
+    addTarget({
+      steamId: data.steamid,
+      profileUrl: data.profileurl,
+      createdAt: new Date().toISOString(),
+    });
   };
 
   const onFriendTrackToggle = async (friendSteamId: string, friendProfileUrl: string) => {
     if (!session?.user?.steamId || session.user.steamId === friendSteamId) return;
 
     const friendTracked = trackedIds.has(friendSteamId);
-    const ok = await postTrackingToggle(
-      friendTracked ? { targetSteamId: friendSteamId } : { targetSteamUrl: friendProfileUrl },
-      friendTracked
-    );
 
-    if (ok) {
-      await mutateTracking();
+    if (friendTracked) {
+      removeTarget(friendSteamId);
+      return;
     }
+
+    addTarget({
+      steamId: friendSteamId,
+      profileUrl: friendProfileUrl,
+      createdAt: new Date().toISOString(),
+    });
   };
 
   const openFriendProfile = (profileUrl: string) => {
