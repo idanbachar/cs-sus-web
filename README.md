@@ -1,45 +1,121 @@
-# CS:SUS (Counter-Strike: Suspect Searcher)
+# CS-SUS
 
-CS:SUS is a comprehensive tool designed for enthusiasts of the game Counter-Strike 2. This tool provides detailed analytics of a player's performance and metrics to gauge the likelihood of cheating. Integrated with Steam's authentication, users can not only fetch data about any player but also track suspect profiles and get notifications about their VAC ban status.
+Modern Next.js rebuild of CS-SUS using App Router, TypeScript, Steam API hydration, and score-based profile risk analysis.
 
-## Features:
+## Stack
 
-1. **Steam Profile Search**: Enter a Steam profile URL to fetch the CS2 statistics.
-2. **Cheater Probability Score**: Based on various metrics and analytics, get a percentage score indicating the likelihood of a profile being a cheater.
-3. **Steam Login Integration**: Securely log in using your Steam account.
-4. **Tracking List**: Add profiles to your tracking list and keep an eye on them.
-5. **Email Notifications (SOON)**: Get notified when a player from your tracking list receives a VAC ban.
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- NextAuth (Steam OpenID)
+- Zod validation
+- SWR data fetching
+- Supabase (optional) with automatic local fallback store
 
-![Alt text](./src/assets/images/home.png)
-![Alt text](./src/assets/images/legit.png)
-![Alt text](./src/assets/images/sus.png)
-![Alt text](./src/assets/images/tracking.png)
+## Current features
 
-## Technologies Used
+- Steam profile search flow from UI to server routes
+- Profile hydration from Steam API (single and batch)
+- Cheater score engine with reason codes
+- Login flow via Steam provider in NextAuth
+- Tracking list API and UI (add, remove, list)
+- Storage abstraction:
+	- Supabase store when configured
+	- Local file store fallback in `.data/tracking.json`
 
-- React
-- Steam API
-- Node.js (for the backend)
-- Firebase (for tracking)
+## Screenshots
 
-## Frequently Asked Questions (FAQ)
+### Home
 
-### How is the Cheater Probability Score calculated?
+![Home screen](src/screenshots/preview_1.png)
 
-The Cheater Probability Score is based on a combination of metrics from the player's CS2 statistics, anomalies in the player's CS2 total playtime, steam level, total badges, total friends, account age, inventory items price, some statistics like headshot percentage, total kills and various other data points fetched from the Steam API. While the score provides an indication, it's essential to understand that it's a heuristic, and there might be false positives.
+### Search result (low trust profile)
 
-### What happens if I forget my Steam login for this application?
+![Search result low trust](src/screenshots/preview_2.png)
 
-Don't worry! We don't store your Steam credentials. The login mechanism is handled through Steam's OAuth2.0, ensuring that your data remains secure. If you're logged out, you can always log in again using the 'Login with Steam' button.
+### Search result (high trust profile)
 
-### How often are the email notifications sent?
+![Search result high trust](src/screenshots/preview_3.png)
 
-Work in progress.
+### Tracking list
 
-### How do I remove a player from my tracking list?
+![Tracking list](src/screenshots/preview_4.png)
 
-Once logged in, navigate to your tracking list. Next to each player's name, there's a 'Stop tracking' button. Clicking on it will immediately remove the player from your list and stop further notifications about that player.
+## App routes
 
-## Acknowledgments
+- `/` home page
+- `/search` profile search and results
+- `/login` auth entry page
+- `/myTrackingList` tracked users view
 
-- Special thanks to the developers of the Steam API for making this project possible.
+## API routes
+
+- `GET /api/steam/user?steamUrl=...`
+	- Resolves a Steam profile URL to Steam ID and returns full hydrated user data.
+- `POST /api/steam/users`
+	- Accepts `{ steamUrls: string[] }` (max 50), deduplicates IDs, returns hydrated users.
+- `POST /api/tracking/add`
+	- Requires auth session. Body: `{ targetSteamUrl: string }`.
+- `GET /api/tracking/list?ownerSteamId=...`
+	- Requires auth session and enforces owner/session match.
+- `POST /api/tracking/remove`
+	- Requires auth session. Body: `{ targetSteamId: string }`.
+- `GET|POST /api/auth/[...nextauth]`
+	- NextAuth endpoints with Steam provider wiring.
+
+## Environment variables
+
+Create `.env.local` and set:
+
+```bash
+STEAM_SECRET=
+STEAM_API_KEY=
+STEAM_BASE_URL=https://api.steampowered.com
+
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=http://localhost:3000
+
+SUPABASE_URL=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+```
+
+Notes:
+
+- `STEAM_API_KEY` is required for Steam data routes.
+- `STEAM_SECRET` (or `STEAM_API_KEY` fallback) is required for Steam auth provider.
+- If `NEXTAUTH_SECRET` is empty in local dev, a temporary insecure fallback secret is used.
+- Supabase is optional. If missing, tracking uses local file storage automatically.
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:3000`.
+
+## Available scripts
+
+```bash
+npm run dev
+npm run dev:webpack
+npm run build
+npm run start
+npm run lint
+```
+
+## Supabase setup (optional)
+
+1. Create a Supabase project.
+2. Run schema from `supabase/schema.sql`.
+3. Add Supabase env vars to `.env.local`.
+4. Restart the Next.js dev server.
+
+## Known gaps / next steps
+
+1. Persist richer user profile metadata immediately after Steam auth callback.
+2. Add rate limiting and explicit cache policy for Steam API routes.
+3. Expand results UI for full parity (friends carousel, CS2 card depth, reasons breakdown UX).
