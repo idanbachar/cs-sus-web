@@ -4,7 +4,7 @@ Modern Next.js rebuild of CS-SUS using App Router, TypeScript, Steam API hydrati
 
 ## Stack
 
-- Next.js 16 (App Router)
+- Next.js 15 (App Router)
 - React 19
 - TypeScript
 - NextAuth (Steam OpenID)
@@ -94,6 +94,11 @@ Notes:
 npm install
 npm run dev
 ```
+
+## Dependency compatibility note
+
+- Project is currently pinned to Next.js 15 because `next-auth-steam@0.4.0` declares peer support up to Next 15.
+- Upgrading to Next.js 16 requires either replacing `next-auth-steam`, maintaining a custom fork, or using a non-strict install mode (not recommended for stability).
 
 Open `http://localhost:3000`.
 
