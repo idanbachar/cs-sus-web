@@ -231,6 +231,7 @@ a {
     box-shadow: none;
     height: auto;
     display: block;
+    overflow: visible;
   }
 
   .friends-panel.friends-panel-side .friends-panel-head {
@@ -240,6 +241,8 @@ a {
   }
 
   .friends-panel.friends-panel-side .friends-grid {
+    height: auto;
+    flex: none;
     overflow: visible;
     min-height: initial;
     padding-right: 0;
@@ -938,6 +941,7 @@ a {
     box-shadow: none;
     height: auto;
     display: block;
+    overflow: visible;
   }
 
   .friends-panel.friends-panel-side .friends-panel-head {
@@ -947,6 +951,8 @@ a {
   }
 
   .friends-panel.friends-panel-side .friends-grid {
+    height: auto;
+    flex: none;
     overflow: visible;
     min-height: initial;
     padding-right: 0;
