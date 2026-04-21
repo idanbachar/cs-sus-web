@@ -27,19 +27,19 @@ Modern Next.js rebuild of CS-SUS using App Router, TypeScript, Steam API hydrati
 
 ### Home
 
-![Home screen](src/screenshots/preview_1.png)
+![Home screen](src/screenshots/home.png)
 
 ### Search result (low trust profile)
 
-![Search result low trust](src/screenshots/preview_2.png)
+![Search result low trust](src/screenshots/lowTrust.png)
 
 ### Search result (high trust profile)
 
-![Search result high trust](src/screenshots/preview_3.png)
+![Search result high trust](src/screenshots/highTrust.png)
 
 ### Tracking list
 
-![Tracking list](src/screenshots/preview_4.png)
+![Tracking list](src/screenshots/myTrackingList.png)
 
 ## App routes
 
