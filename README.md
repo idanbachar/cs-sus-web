@@ -124,3 +124,10 @@ npm run lint
 1. Persist richer user profile metadata immediately after Steam auth callback.
 2. Add rate limiting and explicit cache policy for Steam API routes.
 3. Expand results UI for full parity (friends carousel, CS2 card depth, reasons breakdown UX).
+
+## License
+
+Copyright © 2026 Idan Bachar. All rights reserved.
+
+This project and its code are proprietary. No part of this software may be copied,
+distributed, or modified without the express written permission of the owner.
